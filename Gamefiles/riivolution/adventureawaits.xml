@@ -8,7 +8,7 @@
 	</id>
 	<options>
 		<section name="Adventure Awaits">
-			<option name="Game" id="Adventure Awaits" default="1">
+			<option name="Game" id="AA" default="1">
 				<choice name="Enabled"><patch id="AA"/></choice>
 			</option>
 		</section>

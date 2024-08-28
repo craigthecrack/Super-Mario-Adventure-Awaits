@@ -1,17 +1,17 @@
-code/Kamek/Build_*
-code/Kamek/processed
-code/Kamek/NewerASM
-code/Kamek/kamek_pal2.x
-code/Kamek/kamek_ntsc.x
-code/Kamek/kamek_ntsc2.x
-code/Kamek/kamek_jpn.x
-code/Kamek/kamek_jpn2.x
-code/Kamek/kamek_kor.x
-code/Kamek/kamek_twn.x
-code/Kamek/tools/*.pyc
+Source Code/Kamek/Build_*
+Source Code/Kamek/processed
+Source Code/Kamek/NewerASM
+Source Code/Kamek/kamek_pal2.x
+Source Code/Kamek/kamek_ntsc.x
+Source Code/Kamek/kamek_ntsc2.x
+Source Code/Kamek/kamek_jpn.x
+Source Code/Kamek/kamek_jpn2.x
+Source Code/Kamek/kamek_kor.x
+Source Code/Kamek/kamek_twn.x
+Source Code/Kamek/tools/*.pyc
 *.pyc
-code/Kamek/tools/__pycache__
-code/Kamek/tmp
+Source Code/Kamek/tools/__pycache__
+Source Code/Kamek/tmp
 __pycache__
 lzx.exe
 /tools

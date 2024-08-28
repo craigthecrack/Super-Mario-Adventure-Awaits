@@ -81,6 +81,59 @@
 		<!-- JP -->    <memory offset="0x800E4CF8" value="38600021" original="3860003F" />
 		<!-- KR/TW --> <memory offset="0x800E4E88" value="38600021" original="3860003F" />
 
+		<!--
+		STUPID VANILLA FIXES
+		(why are these not in NSMBWer+???)
+		-->
+
+		<!-- 2-Castle Fix -->
+		<!--PAL--><memory offset="0x8000D064" value="280000FF" original="28000017" />
+		<!--PAL--><memory offset="0x80079BD0" value="280000FF" original="28000017" />
+		<!--PAL--><memory offset="0x80079F60" value="280000FF" original="28000017" />
+		<!--PAL--><memory offset="0x8007A898" value="280000FF" original="28000017" />
+		<!--PAL--><memory offset="0x80083A80" value="38600000" original="4BFFE161" />
+		<!--PAL--><memory offset="0x800EBDE4" value="280000FF" original="28000017" />
+		<!--PAL--><memory offset="0x80101C60" value="280000FF" original="28000017" />
+		<!--PAL--><memory offset="0x8015530C" value="280000FF" original="28000017" />
+		<!--PAL--><memory offset="0x807B4EA8" value="280000FF" original="28000017" />
+		<!--PAL--><memory offset="0x807B5328" value="280000FF" original="28000017" />
+		<!--PAL--><memory offset="0x80888958" value="280000FF" original="28000017" />
+		<!--PAL--><memory offset="0x80888B78" value="280000FF" original="28000017" />
+
+		<!--NTSC--><memory offset="0x8000D064" value="280000FF" original="28000017" />
+		<!--NTSC--><memory offset="0x80079BD0" value="280000FF" original="28000017" />
+		<!--NTSC--><memory offset="0x80079F60" value="280000FF" original="28000017" />
+		<!--NTSC--><memory offset="0x8007A898" value="280000FF" original="28000017" />
+		<!--NTSC--><memory offset="0x80083A80" value="38600000" original="4BFFE161" />
+		<!--NTSC--><memory offset="0x800EBCD4" value="280000FF" original="28000017" />
+		<!--NTSC--><memory offset="0x80101B50" value="280000FF" original="28000017" />
+		<!--NTSC--><memory offset="0x801551CC" value="280000FF" original="28000017" />
+		<!--NTSC--><memory offset="0x807B4EA8" value="280000FF" original="28000017" />
+		<!--NTSC--><memory offset="0x807B5328" value="280000FF" original="28000017" />
+		<!--NTSC--><memory offset="0x80888958" value="280000FF" original="28000017" />
+		<!--NTSC--><memory offset="0x80888B78" value="280000FF" original="28000017" />
+
+		<!--JPN--><memory offset="0x8000D064" value="280000FF" original="28000017" />
+		<!--JPN--><memory offset="0x80079BD0" value="280000FF" original="28000017" />
+		<!--JPN--><memory offset="0x80079F60" value="280000FF" original="28000017" />
+		<!--JPN--><memory offset="0x8007A898" value="280000FF" original="28000017" />
+		<!--JPN--><memory offset="0x80083A80" value="38600000" original="4BFFE161" />
+		<!--JPN--><memory offset="0x800EBC54" value="280000FF" original="28000017" />
+		<!--JPN--><memory offset="0x80101AD0" value="280000FF" original="28000017" />
+		<!--JPN--><memory offset="0x80154FDC" value="280000FF" original="28000017" />
+		<!--JPN--><memory offset="0x807B4C38" value="280000FF" original="28000017" />
+		<!--JPN--><memory offset="0x807B50B8" value="280000FF" original="28000017" />
+		<!--JPN--><memory offset="0x808886E8" value="280000FF" original="28000017" />
+		<!--JPN--><memory offset="0x80888908" value="280000FF" original="28000017" />
+		
+		<!-- Remove 1-1 BG Hardcoding -->
+		<!--PAL--><memory offset="0x801180A0" value="48000018" original="4BF69B41" />
+		<!--NTSC--><memory offset="0x80117F60" value="48000018" original="4BF69C81" />
+		<!--JPN--><memory offset="0x80117D70" value="48000018" original="4BF69E71" />
+		<!--KR/TW--><memory offset="0x80118470" value="48000018" original="4BF698B1" />
+		<!--CHN--><memory offset="0x801192C0" value="48000018" original="4BF68A61" />
+
+
 		<!-- Common -->
 		<memory offset="0x800046F0" valuefile="Loader.bin" />
 		<memory offset="0x8000406C" value="48000684" original="38000000" />		

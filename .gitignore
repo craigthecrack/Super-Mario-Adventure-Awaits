@@ -13,3 +13,4 @@ code/Kamek/tools/*.pyc
 code/Kamek/tools/__pycache__
 code/Kamek/tmp
 __pycache__
+/tools

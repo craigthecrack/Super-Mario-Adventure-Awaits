@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<game name="Adventure Awaits" version="1.0" description="made by REAL drug users!">
+    <folder name="sprites" path="sprites"/>
+    <folder name="external" path="external" />
+    <file name="spritedata" path="spritedata.xml"/>
+    <file name="sprites" path="sprites.py"/>
+	<file name="spritecategories" path="spritecategories.xml"/>
+</game>

@@ -3,7 +3,7 @@
 .set sp, 1
 
 .extern ContinueFromLoadingCRSIN
-.global aI_kinoko_3, aI_fireflower_2, aI_iceflower_0, aI_star_0, aI_propeller_0, aI_penguin, aI_hammer_0
+.global aI_kinoko_3, aI_fireflower_2, aI_iceflower_0, aI_star_0, aI_propeller_0, aI_penguin, aI_hammer_0, I_bubble, I_boomerang
 
 #include <asm_setup.S>
 
@@ -52,6 +52,10 @@ LoadListArray:
 	.long aI_hammer_0							# "I_hammer"
 	.long aHammerM_0							# "hammerM"
 	.long aBros_0								# "bros"
+	.long I_bubble								# "I_bubble"
+    .long Gabon_rock							# "gabon_rock"
+	.long I_boomerang						    # "I_boomerang"
+	.long BoomerangM							# "boomerangM"
 	
 
 aMario_0:
@@ -167,3 +171,16 @@ aHammerM_0:
 
 aBros_0:
 	.string "bros"
+
+I_bubble:
+	.string "I_bubble"
+
+Gabon_rock:
+	.string "gabon_rock"
+
+I_boomerang:
+	.string "I_boomerang"
+
+BoomerangM:
+	.string "boomerangM"
+

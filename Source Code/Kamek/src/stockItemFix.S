@@ -10,7 +10,7 @@
 .extern SI_Kinoko, SI_Fireflower, SI_Propeller, SI_Iceflower, SI_Penguin, SI_Star
 
 # From loading.S
-.extern aI_kinoko_3, aI_fireflower_2, aI_iceflower_0, aI_star_0, aI_propeller_0, aI_penguin, aI_hammer_0
+.extern aI_kinoko_3, aI_fireflower_2, aI_iceflower_0, aI_star_0, aI_propeller_0, aI_penguin, aI_hammer_0, I_bubble, I_boomerang
 
 .text
 StockItemHack:
@@ -46,6 +46,8 @@ StockItemList:
 	.long SI_Penguin
 	.long SI_Star
 	.long SI_hammer
+	.long SI_bubble
+	.long SI_boomerang
 
 StockItemListR3:
 	.long SI_Kinoko
@@ -56,6 +58,8 @@ StockItemListR3:
 	.long SI_Kinoko
 	.long SI_Star
 	.long SI_hammer
+	.long SI_bubble
+	.long SI_boomerang
 
 ItemNamesList:
 	.long teresa
@@ -66,9 +70,17 @@ ItemNamesList:
 	.long aI_propeller_0						# "I_propeller"
 	.long aI_penguin							# "I_penguin"
 	.long aI_hammer_0							# "I_hammer"
+	.long I_bubble								# "I_bubble"
+	.long I_boomerang							# "I_boomerang"
 
 SI_hammer:
 	.string "SI_Hammer"
+
+SI_bubble:
+	.string "SI_Bubble"
+
+SI_boomerang:
+	.string "SI_Boomerang"
 
 teresa:
 	.string "teresa"

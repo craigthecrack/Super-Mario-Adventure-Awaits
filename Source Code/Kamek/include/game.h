@@ -150,6 +150,16 @@ inline void *GetGameMgr() {
 	return GameMgrP;
 }
 
+enum GameFlag {
+    DisableActorSpawning = 1,
+    IsStopped = 2, // enables player state change freeze
+    LevelLoadedMaybe = 4,
+    ExtraMode = 0x10,
+    GameOver = 0x20,
+    CoinBattle = 0x40,
+};
+extern u32 GameFlag;
+
 bool QueryPlayerAvailability(int id);
 void DoStartLevel(void *gameMgr, StartLevelInfo *sl);
 
@@ -257,7 +267,8 @@ public:
 		u8 pad[0x13];				// 0x969
 		struct  {
 			// savefile mods go here now, don't use 6FC
-			u8 new_powerups_available[8]; //0x969
+			u8 new_powerups_available[10]; //0x969
+			u8 hasWrittenNewPow; // 0x973
 		};
 		
 	};
@@ -3740,9 +3751,13 @@ class dStockItemShadow_c : public dBase_c {
 	nw4r::lyt::TextBox *textBoxes[14];
 	nw4r::lyt::Picture *buttonBases[7];
 	bool layoutLoaded, visible, needsUpdate;
-	int values[8];
+	int values[10];
 	nw4r::lyt::TextBox *hammerValue, *hammerX;
 	nw4r::lyt::Picture *hammerButtonBase;
+	nw4r::lyt::TextBox *bubbleValue, *bubbleX;
+	nw4r::lyt::Picture *bubbleButtonBase;
+	nw4r::lyt::TextBox *boomerValue, *boomerX;
+	nw4r::lyt::Picture *boomerButtonBase;
 };
 
 class dStockItem_c : public dBase_c {
@@ -3788,11 +3803,11 @@ class dStockItem_c : public dBase_c {
 	int someAnimID;
 	bool isPlayerActive[4], layoutLoaded, show, _8DE;
 
-	/*daWMItem_c*/void *newItemPtr[8];
-	int newCounts[8];
-	nw4r::lyt::Picture *newButtonBase[8];
-	nw4r::lyt::Pane *newIconPanes[8];
-	nw4r::lyt::Picture *newIconPictures[8];
+	/*daWMItem_c*/void *newItemPtr[10];
+	int newCounts[10];
+	nw4r::lyt::Picture *newButtonBase[10];
+	nw4r::lyt::Pane *newIconPanes[10];
+	nw4r::lyt::Picture *newIconPictures[10];
 
 	void setScalesOfSomeThings();
 	int getIconPictureIDforPlayer(int i);
@@ -4176,11 +4191,12 @@ class dGameDisplay_c : dBase_c {
 		u32 _51C;
 		u8 blob2[0x5A0 - 0x524];
 		u32 _5A0;
-	   
+
 		static dGameDisplay_c* instance;
 
 		int newOnExecute();
 		int onExecute_orig();
+		int doWaitCheck();
 
 		USING_STATES(dGameDisplay_c);
 		REF_NINTENDO_STATE(ProcGoalEnd);

@@ -1,4 +1,23 @@
 SECTIONS {
+	GameFlag = 0x8042a260;
+	onCreate_orig__13dScWorldMap_cFv = 0x80927310;
+	
+	returnFScrap = 0x8077da14;
+	CSMonExecute = 0x8077aca0;
+	
+	playBoomerangSound__16daBoomerangHax_cFv = 0x807C7870;
+
+	getCenterPosY__13ActivePhysicsFv = 0x8008C510;
+	getCenterPosX__13ActivePhysicsFv = 0x8008C570;
+
+	ContinueFromAlternateQBlock = 0x80022858;
+	ContinueFromThatFix = 0x800D47A0;
+	ContinueFromAlternateQBlock2 = 0x80022870;
+	ContinueFromAlternateQBlock3 = 0x80022b5c;
+	ContinueFromAlternateQBlock4 = 0x80022b74;
+	QBlockTable = 0x802EE620;
+	QBlockTable2 = 0x802ee668;
+
 	continueToFanfare = 0x8019c294;
 	continueFromKinopio = 0x807b9f8c;
 	FUN_800f6920 = 0x800f6920;
@@ -2531,6 +2550,40 @@ SECTIONS {
 	sub_809310F0__22dCourseSelectManager_cFv = 0x809310F0;
 	sub_80931090__22dCourseSelectManager_cFv = 0x80931090;
 	sub_80931110__22dCourseSelectManager_cFv = 0x80931110;
+
+	DWORD_8093CDF0 = 0x8093CDF0;
+	DWORD_8093F520 = 0x8093F520;
+	WMPlayer_loadSubplayers = 0x80902BD0;
+
+    returnFrom_WMPlayerUseSubplayerModel = 0x80902B80;
+    returnFrom_WMSubplayerFix01 = 0x80902D5C;
+    returnFrom_WMSubplayerFix02 = 0x80902D70;
+    returnFrom_WMSubplayerFixFloat = 0x80902E18;
+    returnFrom_WMSubplayerFixStatusOnLoad = 0x80909414;
+    returnFrom_FixWMSubplayerLoadModelArray1 = 0x808EB7DC;
+    returnFrom_FixWMSubplayerLoadModelArray2 = 0x808EB7E8;
+    returnFrom_PlayerDecideSound = 0x807A1C98;
+    returnFrom_IncreaseCourseInVolumeSaveParam2 = 0x8019AAB8;
+    returnFrom_IncreaseCourseInVolume = 0x8019AB90;
+    returnFrom_WMStarPowerupSound = 0x807B077C;
+    returnFrom_WMChangeP1Model_SaveReg = 0x80902ED8;
+    returnFrom_DontSetP1PowerupToMario = 0x80903020;
+    returnFrom_WMChangeP1Model = 0x80902F24;
+    returnFrom_ChangePSELBmgForPlayerCount = 0x807A10CC;
+    returnFrom_CancelAddDropCheckPlayer1 = 0x807A0D28;
+    returnFrom_CancelAddDropFix = 0x807A0D44;
+    returnFrom_CancelAfterRegisteredFix = 0x807A0D6C;
+    returnFrom_PreventJumpOnWM = 0x808C5E00;
+    returnFrom_CharacterChangeSelectBase_FixDefaultSelection = 0x8076FF10;
+    returnFrom_CharacterChangeSelectBase_FixDefaultSelection2 = 0x8076FE88;
+    returnFrom_CharacterChangeSelectBase_FixMarioVoice = 0x80771180;
+    returnFrom_CharacterChangeSelectBase_FixMarioVoiceMini = 0x80771168;
+    returnFrom_CharacterChangeSelectBase_FixInUseCheck = 0x8076FDC8;
+    returnFrom_CharacterChangeSelectBase_FixInUseCheck2 = 0x8076FDD8;
+    returnFrom_CharacterChangeSelectContents_GrabMarioIconPanes = 0x80772EE0;
+    returnFrom_CharacterChangeSelectContents_MakeMarioIconPanesInvisible = 0x807733D8;
+    returnFrom_CharacterChangeSelectBase_FixIconUpdate = 0x807735A0;
+    returnFrom_CharacterChangeSelectBase_FixIconUpdate_2 = 0x80773658;
 
 	.text : {
 		FILL (0)

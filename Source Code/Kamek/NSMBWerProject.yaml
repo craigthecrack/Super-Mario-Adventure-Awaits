@@ -18,8 +18,8 @@ modules:
   - processed/bonepiece.yaml
   - processed/bugfixes.yaml
   # - processed/levelnames.yaml
-  # - processed/pregame.yaml 
-  # - processed/layouthax.yaml
+  - processed/pregame.yaml 
+  - processed/layouthax.yaml
   - processed/animtiles.yaml
   - processed/soundPlayer.yaml
   # - processed/bowserKey.yaml
@@ -28,6 +28,7 @@ modules:
   - processed/firelaser.yaml
   - processed/spritetex.yaml
   - processed/gakenoko.yaml
+  - processed/boomeranghax.yaml
   - processed/poweruphax.yaml
   # - processed/heapbar.yaml
   - processed/randtiles.yaml
@@ -81,3 +82,8 @@ modules:
   # - processed/GameDisplay.yaml
   - processed/unusedActorSprites.yaml
   - processed/worldmaphax.yaml
+  # - processed/Player1CanChangeCharacter.yaml
+  - processed/bubbleSuit.yaml
+  - processed/qblock.yaml
+  # - processed/worldmapstuff.yaml
+  # - processed/fileselecticons.yaml

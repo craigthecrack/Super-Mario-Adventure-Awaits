@@ -818,6 +818,9 @@ enum Actors {
 	Linegod, //801
 	Pengi, //802
 	WM_MANAGER, //803
+	BubbleSuit, //804
+	BubbleCoin, //805
+	BoomerangHax, //806
 };
 
 struct Actor {

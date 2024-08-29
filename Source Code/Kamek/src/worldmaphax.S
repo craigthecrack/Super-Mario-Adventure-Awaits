@@ -4,8 +4,6 @@
 .align 4
 .extern spawnMapManager__Fv
 
-.extern aRouteinfo_1, aCollectioncoincoursesort, aCobcastle_1, aCobcourse_0, aCobkinokored_3, aCobkinoko1up_4, aCobkinokosta_3, aCobstart_0, aCobanchor_0, aCobtoride_1, aCobghost_1, aCobcannon_1, aCobkoopaship_5, aCharacter_s_12, aCobsurrender_0, aCobkinopio_1
-
 .global saveForWM
 saveForWM:
 	stwu sp, -0x40(sp)
@@ -48,18 +46,6 @@ restoreForWM:
 	mtlr	r0
 	lwz r0, 0x44(sp)
 	addi	sp, sp, 0x40
-	blr
-
-.global useNewFileListR26
-useNewFileListR26:
-	lis r26, newAlwaysLoadedList@h
-	ori r26, r26, newAlwaysLoadedList@l
-	blr
-
-.global useNewFileListR31
-useNewFileListR31:
-	lis r31, newAlwaysLoadedList@h
-	ori r31, r31, newAlwaysLoadedList@l
 	blr
 
 .extern FUN_800f6920
@@ -117,24 +103,6 @@ newShadowScales:
     blr
 
 .data
-.global newAlwaysLoadedList
-newAlwaysLoadedList:
-	.long aRouteinfo_1
-	.long aCollectioncoincoursesort
-	.long aCobcastle_1
-	.long aCobcourse_0
-	.long aCobkinokored_3
-	.long aCobkinoko1up_4
-	.long aCobkinokosta_3
-	.long aCobstart_0
-	.long aCobanchor_0
-	.long aCobtoride_1
-	.long aCobghost_1
-	.long aCobcannon_1
-	.long aCobkoopaship_5
-	.long aCharacter_s_12
-	.long aCobsurrender_0
-	.long aCobkinopio_1
 
 .global newScalesTable
 newScalesTable:
@@ -160,6 +128,12 @@ newScalesTable:
 	.float 1.0
 	.float 0.8
 	.float 0.8 #NEW: scales for hammer
+	.float 1.0
+	.float 0.8
+	.float 0.8 #NEW: scales for bubble
+	.float 1.0
+	.float 0.8
+	.float 0.8 #NEW: scales for boomer
 	.float 1.0
 	.float 0.8
 

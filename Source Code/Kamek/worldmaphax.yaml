@@ -76,22 +76,10 @@ hooks:
     src_addr_pal: 0x8092c284
     target_func: 'saveForWM'
 
-  - name: useNewFileListR26
-    type: branch_insn
-    branch_type: bl
-    src_addr_pal: 0x809278f4
-    target_func: 'useNewFileListR26'
-
   - name: loadMoreFiles
     type: patch
     addr_pal: 0x80927910
     data: '281b0010' #281b0010 + new models
-
-  - name: useNewFileListR31
-    type: branch_insn
-    branch_type: bl
-    src_addr_pal: 0x80926bfc
-    target_func: 'useNewFileListR31'
 
   - name: loadMoreFiles2
     type: patch

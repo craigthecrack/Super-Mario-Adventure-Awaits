@@ -551,6 +551,9 @@ enum
 	LevelSpecial = 531,
 	Waterlift = 532,
 	LineGod = 533,
+	BubbleSuit = 534,
+	BubbleCoin = 535,
+	BoomerangHax = 536,
 
     Num
 };
@@ -1372,6 +1375,9 @@ enum
 	Linegod, //801
 	Pengi, //802
 	WM_MANAGER, //803
+	BubbleSuit, //804
+	BubbleCoin, //805
+	BoomerangHax, //806
 
     Num
 };

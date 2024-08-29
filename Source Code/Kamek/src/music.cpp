@@ -79,6 +79,7 @@ const char* SongNameList [] = {
 	"",
 	"BOSS_CASTLE",
 	"BOSS_AIRSHIP",
+	"GUTTERWOMAN",
 	NULL	
 };
 

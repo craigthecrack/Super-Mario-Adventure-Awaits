@@ -15,15 +15,9 @@
 	</options>
 	<patch id="AA">
 		<folder external="./" disc="/" recursive ="true" create="true" />
-		<folder external="Tilesets" disc="/Stage/Texture" create="true" />
 		<folder external="TitleReplay" disc="/Replay/title" create="true" />
 		<folder external="BGs" disc="/Object" create="true" />
 		<!--<folder external="SpriteTex" disc="/Object" create="true" />-->
-		<folder external="Layouts" disc="/Layout" create="true" />
-		<folder external="Music" disc="/Sound" create="true" />
-		<folder external="Music/sfx" disc="/Sound/stream/sfx" create="true" />
-		<folder external="Music/stream" disc="/Sound/stream" create="true" />
-		<folder external="Music/rsar" disc="/Sound" />
 		<folder external="Font" disc="/EU/EngEU/Font" />
 		<folder external="Font" disc="/EU/GerEU/Font" />
 		<folder external="Font" disc="/EU/FraEU/Font" />
@@ -48,8 +42,6 @@
 		<folder external="Message" disc="/TW/Message" />
 		<folder external="Others" />
 		<folder external="Others{$__region}" />
-		<folder external="Maps" disc="/WorldMap" create="true" />
-		<folder external="Stages" disc="/Stage" create="true" />
 		
 		<!-- Save name change -->
 		<!-- EU -->    <memory offset="0x802F148C" value="7769696D6A3264" original="7769696D6A3264" />

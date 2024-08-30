@@ -87,3 +87,4 @@ modules:
   - processed/qblock.yaml
   # - processed/worldmapstuff.yaml
   - processed/fileselecticons.yaml
+  - processed/soundHax.yaml

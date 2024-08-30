@@ -1,0 +1,10 @@
+---
+source_files: []
+hooks:
+  - name: removeObakeDoorOpenSFX
+    type: nop_insn
+    area_pal: 0x80A75A38
+
+  - name: removeObakeDoorCloseSFX
+    type: nop_insn
+    area_pal: 0x80A759E8

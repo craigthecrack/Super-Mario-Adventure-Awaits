@@ -977,6 +977,12 @@ isBoomerangForToad:
 	b continueToadPowerupSet
 
 
+.global CheckExistingPowerup
+CheckExistingPowerup:
+	lwz r3, 0x14E0(r3)
+	blr
+
+
 .global AcPyCtorHS
 AcPyCtorHS:
 	stwu r1, -0x10(r1)

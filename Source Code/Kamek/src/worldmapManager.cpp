@@ -80,64 +80,111 @@ int dWMManager_c::onExecute() {
 	return true;
 }
 
-void dWMManager_c::CSGLoadLevelNumberFromLevelInfo(int *param_1, int param_2) {
-	layout = (m2d::EmbedLayout_c*)((int)(dCourseSelectManager_c::instance) + 208);
+int dWMManager_c::onDraw() {
+	return true;
+}
 
-    T_worldNum_00 = layout->findTextBoxByName("T_worldNum_00");
-    T_cSelect_00 = layout->findTextBoxByName("T_cSelect_00");
-    T_cSelect_pic = layout->findTextBoxByName("T_cSelect_pic");
-    T_levelName_00 = layout->findTextBoxByName("T_levelName_00");
-
-    T_cSelect_pic->SetVisible(false);
-    T_cSelect_00->SetVisible(true);
-
-	World = *(u8*)((int)(dCourseSelectManager_c::instance) + 0x4D3);
-	Level = *(u8*)((int)(dCourseSelectManager_c::instance) + 0x4D7);
-
-	this->setWorldNumber(T_worldNum_00, World);
-
-	dLevelInfo_c::entry_s *level = dLevelInfo_c::s_info.searchBySlot(World, Level);
-	if (level) {
-        T_levelName_00->SetVisible(true);
-        
-		const wchar_t *convWorldName;
-		const wchar_t *convLevelName;
-
-		convWorldName = getWorldNumber(level->displayWorld);
-		convLevelName = getLevelNumber(World, level->displayLevel);
-
-		T_worldNum_00->SetString(convWorldName);
-
-		if (level->displayLevel > 19) {
-			T_cSelect_pic->SetVisible(true);
-			T_cSelect_00->SetVisible(false);
-			T_cSelect_pic->SetString(convLevelName);
-		} else {
-			T_cSelect_pic->SetVisible(false);
-			T_cSelect_00->SetVisible(true);
-			T_cSelect_00->SetString(convLevelName);
-		}
-
-        const char *levelname = dLevelInfo_c::s_info.getNameForLevel(level);
-		wchar_t lbuffer[0x40];
-		for (int i = 0; i < 0x40; i++) {
-			lbuffer[i] = (unsigned short)levelname[i];
-		}
-		T_levelName_00->SetString(lbuffer);
-
+void dWMManager_c::setWorldNumber(nw4r::lyt::TextBox *textbox, u8 world) {
+	dLevelInfo_c::entry_s *liWorld = dLevelInfo_c::s_info.searchBySlot(world, 38);
+	if (liWorld) {
+		const wchar_t *worldNum;
+		worldNum = getWorldNumber(liWorld->displayWorld);
+		textbox->SetString(worldNum);
 	} else {
-		if(Level > 254) { //get a dot
-			T_cSelect_pic->SetVisible(true);
-    		T_cSelect_00->SetVisible(false);
-            T_levelName_00->SetVisible(false);
-			T_cSelect_pic->SetString(L"6");
+		textbox->SetString(L"?");
+	}
+}
+
+void dWMManager_c::CSGLoadLevelNumberFromLevelInfo(int *param_1, int param_2) {
+	if (param_2 == 1) {
+		*(u8*)((int)(dCourseSelectManager_c::instance) + 0x4D7) = 0xfffffffe;
+	} else {
+		layout = (m2d::EmbedLayout_c*)((int)(dCourseSelectManager_c::instance) + 208);
+
+    	T_worldNum_00 = layout->findTextBoxByName("T_worldNum_00");
+	    T_cSelect_00 = layout->findTextBoxByName("T_cSelect_00");
+	    T_cSelect_pic = layout->findTextBoxByName("T_cSelect_pic");
+
+		T_levelName_00 = layout->findTextBoxByName("T_levelName_00");
+		nw4r::lyt::Pane *N_zanki_00 = layout->findPaneByName("N_zanki_00");
+		N_zanki_00->trans.y = 14.99f; // normal position
+
+		T_cSelect_pic->SetVisible(false);
+		T_cSelect_00->SetVisible(true);
+		T_levelName_00->SetVisible(true);
+
+		World = *(u8*)((int)(dCourseSelectManager_c::instance) + 0x4D3);
+		Level = *(u8*)((int)(dCourseSelectManager_c::instance) + 0x4D7);
+
+		const char *levelname;
+		dLevelInfo_c::entry_s *level = dLevelInfo_c::s_info.searchBySlot(World, Level);
+		if (level) {
+			const wchar_t *convWorldName;
+			const wchar_t *convLevelName;
+
+			convWorldName = getWorldNumber(level->displayWorld);
+			convLevelName = getLevelNumber(World, level->displayLevel);
+
+			T_worldNum_00->SetString(convWorldName);
+
+			if (level->displayLevel > 19) {
+				T_cSelect_pic->SetVisible(true);
+				T_cSelect_00->SetVisible(false);
+				T_cSelect_pic->SetString(convLevelName);
+			} else {
+				T_cSelect_pic->SetVisible(false);
+				T_cSelect_00->SetVisible(true);
+				T_cSelect_00->SetString(convLevelName);
+			}
+			if (Level == 38) {
+				SaveFile *file = GetSaveFile();
+				SaveBlock *block = file->GetBlock(file->header.current_file);
+				switch (block->toad_level_idx[World]) {
+					case 0: //arrow
+						T_levelName_00->SetVisible(false);
+						levelname = dLevelInfo_c::s_info.getNameForLevel(dLevelInfo_c::s_info.searchBySlot(World, 38));
+						N_zanki_00->trans.y = 41.99f; // retail position
+						break;
+					case 4: //yellow
+						levelname = dLevelInfo_c::s_info.getNameForLevel(dLevelInfo_c::s_info.searchBySlot(World, 27));
+						break;
+					case 5: //red
+						levelname = dLevelInfo_c::s_info.getNameForLevel(dLevelInfo_c::s_info.searchBySlot(World, 26));
+						break;
+					default: //green
+						levelname = dLevelInfo_c::s_info.getNameForLevel(dLevelInfo_c::s_info.searchBySlot(World, 25));
+						break;
+				}
+			} else {
+				levelname = dLevelInfo_c::s_info.getNameForLevel(level);
+			}
+			WriteAsciiToTextBox(T_levelName_00, levelname);
 		} else {
-			T_cSelect_pic->SetVisible(false);
-    		T_cSelect_00->SetVisible(true);
-            T_levelName_00->SetVisible(true);
-			T_cSelect_00->SetString(L"?");
-            T_levelName_00->SetString(L"Not Found In LevelInfo!");
+			if(Level > 254) { //get a dot
+				T_levelName_00->SetVisible(false);
+				N_zanki_00->trans.y = 41.99f; // retail position
+				T_cSelect_pic->SetVisible(true);
+				T_cSelect_00->SetVisible(false);
+				T_cSelect_pic->SetString(L"6");
+				this->setWorldNumber(T_worldNum_00, World);
+			} else {
+				T_levelName_00->SetVisible(true);
+				T_cSelect_pic->SetVisible(false);
+				T_cSelect_00->SetVisible(true);
+				char levelNumber[15];
+				sprintf(levelNumber, "%d-%d (UNNAMED)", World+1, Level+1);
+				levelname = levelNumber;
+				WriteAsciiToTextBox(T_levelName_00, levelname);
+				T_cSelect_00->SetString(L"?");
+				T_worldNum_00->SetString(L"?");
+			}
 		}
 	}
+
+	// Stuff for the beta Newer MapHUD
+	//setupFooterInfo();
+	//setupHeaderInfo();
+	//setupOtherStuff();
+
 	return;
 }

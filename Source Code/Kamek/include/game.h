@@ -88,6 +88,7 @@ struct StartLevelInfo {
 };
 extern bool DontShowPreGame;
 extern StartLevelInfo RESTART_CRSIN_LevelStartStruct;
+extern StartLevelInfo m_startGameInfo;
 
 class GMgr8 {
 	public:
@@ -269,6 +270,7 @@ public:
 			// savefile mods go here now, don't use 6FC
 			u8 new_powerups_available[10]; //0x969
 			u8 hasWrittenNewPow; // 0x973
+			u8 lastP1Character;				// 0x974
 		};
 		
 	};

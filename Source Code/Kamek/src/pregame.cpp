@@ -46,59 +46,87 @@ class PregameLytHandler {
 };
 
 // Notes:
-// Deleted; P_coinStage_00, T_recommend_00, T_worldNum_00,
-// T_-_00, T_pictureFont_00, T_corseNum_00, T_world_00
+// Deleted; P_coinStage_00, T_recommend_00,
 // P_Wx_00, P_coin_00, P_free_00
 
 extern char CurrentLevel;
 extern char CurrentWorld;
 
 void LoadPregameStyleNameAndNumber(m2d::EmbedLayout_c *layout) {
-	nw4r::lyt::TextBox
-		*LevelNumShadow, *LevelNum,
-		*LevelNameShadow, *LevelName;
+	const wchar_t *convWorldName;
+	const wchar_t *convLevelName;
+	const char *levelname;
 
-	LevelNumShadow = layout->findTextBoxByName("LevelNumShadow");
-	LevelNum = layout->findTextBoxByName("LevelNum");
-	LevelNameShadow = layout->findTextBoxByName("LevelNameShadow");
+	int wnum = (int)CurrentWorld;
+	int lnum = (int)CurrentLevel;
+
+	nw4r::lyt::TextBox
+		*LevelName, *T_worldNum_00,
+		*T_corseNum_00, *T_pictureFont_00;
+
+	// Setup text panes
 	LevelName = layout->findTextBoxByName("LevelName");
+	T_worldNum_00 = layout->findTextBoxByName("T_worldNum_00");
+	T_corseNum_00 = layout->findTextBoxByName("T_corseNum_00");
+	T_pictureFont_00 = layout->findTextBoxByName("T_pictureFont_00");
 
 	// work out the thing now
 	dLevelInfo_c::entry_s *level = dLevelInfo_c::s_info.searchBySlot(CurrentWorld, CurrentLevel);
 	if (level) {
-		wchar_t convLevelName[160];
-		const char *srcLevelName = dLevelInfo_c::s_info.getNameForLevel(level);
-		int i = 0;
-		while (i < 159 && srcLevelName[i]) {
-			convLevelName[i] = srcLevelName[i];
-			i++;
+		convWorldName = getWorldNumber(level->displayWorld);
+		convLevelName = getLevelNumber((int)CurrentWorld, level->displayLevel);
+
+		// Level ID
+		T_worldNum_00->SetString(convWorldName);
+
+		if (level->displayLevel > 19) {
+			T_pictureFont_00->SetVisible(true);
+			T_corseNum_00->SetVisible(false);
+			T_pictureFont_00->SetString(convLevelName);
+		} else {
+			T_pictureFont_00->SetVisible(false);
+			T_corseNum_00->SetVisible(true);
+			T_corseNum_00->SetString(convLevelName);
 		}
-		convLevelName[i] = 0;
-		LevelNameShadow->SetString(convLevelName);
-		LevelName->SetString(convLevelName);
 
-		wchar_t levelNumber[32];
-		wcscpy(levelNumber, L"World ");
-		getNewerLevelNumberString(level->displayWorld, level->displayLevel, &levelNumber[6]);
-
-		LevelNum->SetString(levelNumber);
-
-		// make the picture shadowy
-		int sidx = 0;
-		while (levelNumber[sidx]) {
-			if (levelNumber[sidx] == 11) {
-				levelNumber[sidx+1] = 0x200 | (levelNumber[sidx+1]&0xFF);
-				sidx += 2;
+		// Level Name
+		if (CurrentLevel == 38) {
+			SaveFile *file = GetSaveFile();
+			SaveBlock *block = file->GetBlock(file->header.current_file);
+			switch (block->toad_level_idx[CurrentWorld]) {
+				case 4: //yellow
+					levelname = dLevelInfo_c::s_info.getNameForLevel(dLevelInfo_c::s_info.searchBySlot(CurrentWorld, 27));
+					break;
+				case 5: //red
+					levelname = dLevelInfo_c::s_info.getNameForLevel(dLevelInfo_c::s_info.searchBySlot(CurrentWorld, 26));
+					break;
+				default: //green
+					levelname = dLevelInfo_c::s_info.getNameForLevel(dLevelInfo_c::s_info.searchBySlot(CurrentWorld, 25));
+					break;
 			}
-			sidx++;
+		} else {
+			levelname = dLevelInfo_c::s_info.getNameForLevel(level);
 		}
-		LevelNumShadow->SetString(levelNumber);
-
+		
 	} else {
-		LevelNameShadow->SetString(L"Not found in LevelInfo!");
-		LevelName->SetString(L"Not found in LevelInfo!");
+		T_pictureFont_00->SetVisible(false);
+		T_corseNum_00->SetVisible(true);
+		T_worldNum_00->SetString(L"?");
+		T_corseNum_00->SetString(L"?");
+		char levelNumber[15];
+		sprintf(levelNumber, "%d-%d (UNNAMED)", wnum+1, lnum+1);
+		levelname = levelNumber;
 	}
+
+	wchar_t lbuffer[0x40];
+	for (int i = 0; i < 0x40; i++) {
+		lbuffer[i] = (unsigned short)levelname[i];
+	}
+
+	LevelName->SetString(lbuffer);
 }
+
+// TODO in the future: implement the pregame stuff ryguy sent me (will need work to be compatible with newer's layout)
 
 #include "fileload.h"
 void PregameLytHandler::hijack_loadLevelNumber() {

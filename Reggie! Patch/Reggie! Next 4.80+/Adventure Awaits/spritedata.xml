@@ -971,7 +971,7 @@
     <value nybble="5-6" title="Set to Zero" comment="If pairing the ?-Block with sprite 474, no further action is needed to create Dancing synchronized movement." requirednybble="7" requiredval="7"/> <!-- Appears if [Movement Type] = 7 -->
     <value nybble="5-6" title="Mushroom ID" comment="If pairing the ?-Block with sprite 172, match the Mushroom ID to enable Mushroom Bolt controlled movement. It will be paired to the platform with the Bolt." requirednybble="7" requiredval="5" idtype="Mushroom"/> <!-- Appears if [Movement Type] = 5 -->
     <value nybble="5-6" title="Mushroom ID" comment="If pairing the ?-Block with sprite 382, match the Mushroom ID to enable Mushroom Bolt controlled movement. It will be paired to the platform without the Bolt." requirednybble="7" requiredval="6" idtype="Mushroom"/> <!-- Appears if [Movement Type] = 6 -->
-    <list nybble="12" title="Block Contains" comment="This determines what item the block contains." comment2="This block will release as many items as there are players.">
+    <list nybble="12" title="Block Contains" comment="This determines what item the block contains." comment2="This block will release as many items as there are players." requirednybble="11" requiredval="0">
       <entry value="0">Empty</entry>
       <entry value="1">1 Coin</entry>
       <entry value="10">10-Coin</entry>
@@ -980,7 +980,7 @@
       <entry value="15">Ice Flower</entry>
       <entry value="4">Propeller Shroom</entry>
       <entry value="5">Penguin Suit</entry>
-      <entry value="2">Hammer Suit</entry>
+      <entry value="2">Fire Flower</entry>
       <entry value="6">Mini Mushroom</entry>
       <entry value="7">Star</entry>
       <entry value="8">Continuous Star</entry>
@@ -989,7 +989,13 @@
       <entry value="12">Vine</entry>
       <entry value="13">Spring</entry>
     </list>
+    <list nybble="12" title="Block Contains (Alternate Table)" comment="This determines what item the block contains." comment2="This block will release as many items as there are players." requirednybble="11" requiredval="1">
+    <entry value="0">Hammer Suit</entry>
+      <entry value="2">Bubble Flower</entry>
+    <entry value="3">Boomerang Flower</entry>
+    </list>
     <checkbox nybble="8.4" title="Place Behind Other Sprites" comment="When enabled, this changes the relative Z-order of the ?-Block placing it further behind other sprites." comment2="This will place the ?-Block behind even Chainlink Fence and Layer 1 terrain."/>
+	<checkbox nybble="11" title="Alternate ?-Block Table" comment="This changes the powerup table of the ?-Block."/>
     <checkbox nybble="10.4" title="Follows Lines" comment="It is recommended to use [402] Line Controlled ? Block instead."/>
     <dualbox nybble="9.4" title1="Start Right/Up" title2="Start Left/Down" comment="This determines which direction the ?-Block will move based on the Line that it is connected to."/>
   </sprite> <!-- #207: ? Block -->

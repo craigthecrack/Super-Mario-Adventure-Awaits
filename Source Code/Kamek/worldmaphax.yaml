@@ -108,3 +108,9 @@ hooks:
     branch_type: b
     src_addr_pal: 0x809032c0
     target_func: 'newShadowScales'
+
+  - name: ReadLevelNumberFromLevelInfo
+    type: branch_insn
+    branch_type: b
+    src_addr_pal: 0x80010b50
+    target_func: dWMManager_c::CSGLoadLevelNumberFromLevelInfo(int *, int)

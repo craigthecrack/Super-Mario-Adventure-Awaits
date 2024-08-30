@@ -160,6 +160,17 @@ void dHammerSuitRenderer_c::draw() {
 void CrapUpPositions(Vec *out, const Vec *in);
 
 void dStockItem_c::setScalesOfSomeThings() {
+	// 4:3 mode fix for stockitem
+	nw4r::lyt::Pane *N_frameStock_00 = layout.findPaneByName("N_frameStock_00");
+	nw4r::lyt::Pane *N_ItemShadow_00 = shadow->layout.findPaneByName("N_ItemShadow_00");
+	Vec2 paneScale = {0.85f, 0.85f};
+	Vec modelScale = {0.85f, 0.85f, 0.85f};
+
+	if (!IsWideScreen()) {
+		N_frameStock_00->scale = paneScale;
+		N_ItemShadow_00->scale = paneScale;
+	}
+	
 	nw4r::lyt::Pane *ppos = N_forUse_PPos[playerCount];
 
 	int howManyPlayers = 0;
@@ -208,9 +219,16 @@ void dStockItem_c::setScalesOfSomeThings() {
 		*((float*)(item+0xAC)) = out.x;
 		*((float*)(item+0xB0)) = out.y;
 		*((float*)(item+0xB4)) = out.z;
-		*((float*)(item+0x1F4)) = P_buttonBase[i]->scale.x;
-		*((float*)(item+0x1F8)) = P_buttonBase[i]->scale.y;
-		*((float*)(item+0x1FC)) = 1.0f;
+		// use different scales depending on the aspect ratio
+		if (IsWideScreen()) {
+			*((float*)(item+0x1F4)) = P_buttonBase[i]->scale.x;
+			*((float*)(item+0x1F8)) = P_buttonBase[i]->scale.y;
+			*((float*)(item+0x1FC)) = 1.0f;
+		} else {
+			*((float*)(item+0x1F4)) = modelScale.x;
+			*((float*)(item+0x1F8)) = modelScale.y;
+			*((float*)(item+0x1FC)) = modelScale.z;
+		}
 	}
 
 

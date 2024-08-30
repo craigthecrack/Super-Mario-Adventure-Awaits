@@ -1,4 +1,9 @@
 SECTIONS {
+	m_startGameInfo = 0x80315e90;
+	loadLevelNumber__17PregameLytHandlerFv = 0x80B6BDD0;
+	loadLives__17PregameLytHandlerFv = 0x80b6bcc0;
+	WarningMgr_AllWarningEnd = 0x8010e5a0;
+	
 	GameFlag = 0x8042a260;
 	onCreate_orig__13dScWorldMap_cFv = 0x80927310;
 	

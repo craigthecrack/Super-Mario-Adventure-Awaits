@@ -82,7 +82,7 @@ modules:
   # - processed/GameDisplay.yaml
   - processed/unusedActorSprites.yaml
   - processed/worldmaphax.yaml
-  # - processed/Player1CanChangeCharacter.yaml
+  - processed/Player1CanChangeCharacter.yaml
   - processed/bubbleSuit.yaml
   - processed/qblock.yaml
   # - processed/worldmapstuff.yaml

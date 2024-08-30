@@ -22,8 +22,8 @@ hooks:
   - {name: WACannonDest, type: patch, addr_pal: 0x802f4d14, data: '0000000A'}
 
 # Quick Save
-  # - {name: DisableQuickSave, type: nop_insn, area_pal: 0x8077AA7C}
-  # - {name: DisableQuickSave2, type: nop_insn, area_pal: 0x8092FD08}
+  - {name: DisableQuickSave, type: nop_insn, area_pal: 0x8077AA7C}
+  - {name: DisableQuickSave2, type: nop_insn, area_pal: 0x8092FD08}
 
 # Level hardcode removals
   # - {name: disableLevelToadCondSetting, type: nop_insn, area_pal: 0x80928008} not needed

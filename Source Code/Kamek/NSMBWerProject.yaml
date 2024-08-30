@@ -86,4 +86,4 @@ modules:
   - processed/bubbleSuit.yaml
   - processed/qblock.yaml
   # - processed/worldmapstuff.yaml
-  # - processed/fileselecticons.yaml
+  - processed/fileselecticons.yaml

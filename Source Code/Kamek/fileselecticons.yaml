@@ -1,0 +1,13 @@
+---
+source_files: [../src/fileselecticons.cpp]
+hooks:
+  - name: DateFile_NewLoadInfo
+    type: branch_insn
+    branch_type: b
+    src_addr_pal: 0x8077D9A0
+    target_func: 'dDateFile_c::newLoadInfoForSaveBlock(SaveBlock *)'
+  
+  - name: CSMStorePlayerIntoSave
+    type: add_func_pointer
+    src_addr_pal: 0x809415f8
+    target_func: 'CSMStorePlayer(dBase_c *)'

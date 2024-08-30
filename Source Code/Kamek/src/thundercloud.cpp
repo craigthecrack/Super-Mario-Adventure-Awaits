@@ -490,7 +490,8 @@ void dThunderCloud::beginState_Lightning() {
 	}
 }
 void dThunderCloud::executeState_Lightning() {
-
+	float boltsize, boltpos;
+	
 	switch (timer) {
 		case 0:
 			charge.spawn("Wm_en_birikyu", 0, &(Vec){pos.x, pos.y, pos.z}, &(S16Vec){0,0,0}, &(Vec){1.5, 1.5, 1.5});
@@ -502,8 +503,8 @@ void dThunderCloud::executeState_Lightning() {
 			PlaySound(this, SE_BOSS_JR_ELEC_APP);
 			PlaySound(this, SE_BOSS_JR_DAMAGE_ELEC);
 
-			float boltsize = (leader-14.0)/2;
-			float boltpos = -boltsize - 14.0;
+			boltsize = (leader-14.0)/2;
+			boltpos = -boltsize - 14.0;
 
 			bolt.spawn("Wm_jr_electricline", 0, &(Vec){pos.x, pos.y + boltpos, pos.z}, &(S16Vec){0,0,0}, &(Vec){1.0, boltsize/36.0, 1.0});
 			break;

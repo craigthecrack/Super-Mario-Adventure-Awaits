@@ -385,7 +385,7 @@ hooks:
     addr_pal: 0x802f4e80
     data: '00000000 41800000 41900000 41900000'
 
-  # The following was added by GuttermanGaming. Credits to Synel, Ryguy, and Nin0.
+  # The following was added by GuttermanGaming. Credits to Synel, Ryguy, timer.tpl and Nin0.
 
   - name: BillColliderFix1
     type: patch

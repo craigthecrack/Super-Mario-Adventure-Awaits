@@ -384,3 +384,40 @@ hooks:
     type: patch
     addr_pal: 0x802f4e80
     data: '00000000 41800000 41900000 41900000'
+
+  # The following was added by GuttermanGaming. Credits to Synel, Ryguy, and Nin0.
+
+  - name: BillColliderFix1
+    type: patch
+    addr_pal: 0x80a49fd8
+    data: 'c044005c'
+  
+  - name: BillColliderFix2
+    type: patch
+    addr_pal: 0x80a49fdc
+    data: 'c064007c'
+
+  - name: PermanentFrontFog
+    type: patch
+    addr_pal: 0x800eb354
+    data: '48000018'
+
+  - name: PoisonLayer0Fix
+    type: patch
+    addr_pal: 0x807b4f80
+    data: '4bffffe0'
+
+  - name: Layer0Fix
+    type: patch
+    addr_pal: 0x8042C1F8
+    data: '45BC0000'
+
+  - name: LavaLayer0Fix
+    type: patch
+    addr_pal: 0x807b4f3c
+    data: '48000024'
+
+  - name: OneOneBGFix
+    type: patch
+    addr_pal: 0x801180A0
+    data: '48000018'

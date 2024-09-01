@@ -2590,6 +2590,21 @@ SECTIONS {
     returnFrom_CharacterChangeSelectBase_FixIconUpdate = 0x807735A0;
     returnFrom_CharacterChangeSelectBase_FixIconUpdate_2 = 0x80773658;
 
+	continueFromFirstLoop = 0x80AA7C10;
+	continueFromNodeLoop = 0x80AA7C80;
+	continueFromSnakeBlockLoop3 = 0x80AA7454;
+	continueFromSnakeBlockBackwards = 0x80AA7404;
+	continueFromStoreIsLoopToR9_1 = 0x80AA85A0;
+	continueFromStoreIsLoopToR9_2 = 0x80AA85B0;
+	continueFromOtherDirectionsSpawn = 0x80AA789C;
+	continueFromAdjustSpawnPosition = 0x80AA6F38;
+	continueFromRemoveSFX = 0x80AA85B0;
+	continueFromDoNotMoveIfEvent = 0x80AA72C4;
+	continueFromMakeTIBTwiceAsBig = 0x80AA7C18;
+	doSomethingElseWithTravelInfoBuffer__10SnakeSubExFv = 0x80AA73E0;
+	skipFromRemoveSFX = 0x80AA85DC;
+	returnFromDoNotMoveIfEvent = 0x80AA72E0;
+
 	.text : {
 		FILL (0)
 

@@ -88,3 +88,4 @@ modules:
   # - processed/worldmapstuff.yaml
   - processed/fileselecticons.yaml
   - processed/soundHax.yaml
+  - processed/snakeBlock.yaml

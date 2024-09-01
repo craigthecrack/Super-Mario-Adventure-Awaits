@@ -1635,6 +1635,12 @@ TEX_CloudLT_Ca:
 	ori r4, r4, CloudC@l
 	blr
 
+#.global TEX_SnakeBlock
+#TEX_SnakeBlock:
+#	lwz r5, 4(r27)
+#	srwi r5, r5, 22			#reggie bit 21-26
+#	andi. r5, r5, 0b111111
+#	b GetTexFilenameForR5
 
 
 .global BigMetPowFix

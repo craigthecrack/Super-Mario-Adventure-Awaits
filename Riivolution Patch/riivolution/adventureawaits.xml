@@ -18,6 +18,7 @@
 		<folder external="TitleReplay" disc="/Replay/title" create="true" />
 		<folder external="BGs" disc="/Object" create="true" />
 		<!--<folder external="SpriteTex" disc="/Object" create="true" />-->
+		<folder external="Layout" />
 		<folder external="Font" disc="/EU/EngEU/Font" />
 		<folder external="Font" disc="/EU/GerEU/Font" />
 		<folder external="Font" disc="/EU/FraEU/Font" />
@@ -40,7 +41,6 @@
 		<folder external="Message" disc="/JP/Message" />
 		<folder external="Message" disc="/KR/Message" />
 		<folder external="Message" disc="/TW/Message" />
-		<folder external="Others" />
 		<folder external="Others{$__region}" />
 		
 		<!-- Save name change -->

@@ -88,4 +88,4 @@ modules:
   # - processed/worldmapstuff.yaml
   - processed/fileselecticons.yaml
   - processed/randomcrap.yaml
-  - processed/snakeBlock.yaml
+  # - processed/snakeBlock.yaml commented, until fix

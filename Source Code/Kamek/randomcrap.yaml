@@ -9,3 +9,8 @@ hooks:
   - name: removeObakeDoorCloseSFX
     type: nop_insn
     area_pal: 0x80A759E8
+  
+  - name: DisableBlockSnakeIce #ported from newer
+    type: patch
+    addr_pal: 0x80AA6FC4
+    data: '60000000'

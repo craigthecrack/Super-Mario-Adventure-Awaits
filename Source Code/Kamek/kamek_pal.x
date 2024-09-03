@@ -2612,6 +2612,18 @@ SECTIONS {
 	/* Smooth Scroll Limiter */
 	getZoneByID__9dCourse_cFUcP5mRect = 0x8008e410;
 
+	/* Check Water */
+	continueOriginalCheckWater = 0x80075274;
+	
+	/* Midway Flag */
+	midwayFlagOnCreate = 0x807e2130;
+	midwayFlagOnExecute = 0x807e2410;
+	midwayFlagPowerUp = 0x807e2ca0;
+	StateID_Wait__15daChukanPoint_c = 0x80997d98;
+	StateID_SeaWait__15daChukanPoint_c = 0x80997e18;
+	continueOriginalCheckWater = 0x80075274;
+	mGameFlag__7dInfo_c = 0x8042a260;
+
 	.text : {
 		FILL (0)
 

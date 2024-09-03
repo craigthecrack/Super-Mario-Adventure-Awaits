@@ -93,3 +93,5 @@ modules:
   - processed/spikeTrap.yaml
   - processed/cameraScrollLimiter.yaml
   - processed/signboard.yaml
+  - processed/checkWater.yaml
+  - processed/midwayFlag.yaml

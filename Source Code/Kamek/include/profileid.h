@@ -555,6 +555,7 @@ enum
 	BubbleCoin = 535,
 	BoomerangHax = 536,
 	SpikeTrap = 537,
+	CameraScrollLimiter = 538,
 
     Num
 };
@@ -1380,6 +1381,7 @@ enum
 	BubbleCoin, //805
 	BoomerangHax, //806
 	SpikeTrap, //807
+	CameraScrollLimiter, //808
 
     Num
 };

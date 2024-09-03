@@ -2609,6 +2609,9 @@ SECTIONS {
 	doneWithNewSFXHax = 0x80283CE4;
 	PlaySoundWithFunctionB4_2 = 0x801951E4;
 
+	/* Smooth Scroll Limiter */
+	getZoneByID__9dCourse_cFUcP5mRect = 0x8008e410;
+
 	.text : {
 		FILL (0)
 

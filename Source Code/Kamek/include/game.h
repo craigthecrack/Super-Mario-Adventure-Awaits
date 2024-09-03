@@ -37,6 +37,7 @@ float ceil(float x);
 float floor(float x);
 float pow(float x, float y);
 float sqrt(float x) { return pow(x, 0.5f); }
+int sign(float x) { return (int)(x > 0) - (int)(x < 0); }
 }
 enum Direction {
 	RIGHT = 0,
@@ -2727,10 +2728,35 @@ public:
 		int layer, countdown, tile;
 	};
 	struct limitLineEntry_s {
-		float leftX, rightX;
-		float _8, _C, _10, y, _18, _1C, _20, _24, _28, _2C;
-		float zoneY, zoneHeight, zoneX, zoneWidth;
-		u16 flags; // documented in idb struct, kind of
+		float leftX; /* lineLeft */
+		float rightX; /* lineRight (+16) */
+		float yLimitTop; /* lineLeft, lineRight */
+		float yLimitBottom; /* lineLeft, lineRight */
+		float topLimitTriggerPos; /* lineLeft, lineRight */
+		float spriteYPos; /* lineLeft, lineRight */
+		float topY;
+		float bottomY;
+		float xLimitLeft;
+		float xLimitRight;
+		float leftLimitTriggerPos;
+		float spriteXPos;
+		float zoneTop; /* lineLeft, lineRight */
+		float zoneBottom; /* lineLeft, lineRight */
+		float zoneLeft; /* lineLeft, lineRight */
+		float zoneRight; /* lineLeft, lineRight */
+		u16 flags; /* lineLeft, lineRight | LimitLineFlags
+		1 = Left Line, 2 = Right Line
+		8 = Is UE2 instead of UE
+
+		10 = First nybble is nonzero
+		20 = First nybble is zero
+
+		100 = First nybble is nonzero,
+			settings 0x1000 (bit 19) is not set
+
+		200 = First nybble is zero,
+		settings 0x1000 (bit 19) is not set */
+		u8 pad[2];
 	};
 	struct manualZoomEntry_s {
 		float x1, x2, y1, y2;
@@ -2739,6 +2765,30 @@ public:
 	struct beets_s {
 		float _0, _4;
 		u8 _8;
+	};
+
+	enum LimitLineType {
+		UNK_0 = 0,
+		UD_LEFT = 1,
+		UD_RIGHT = 2,
+		UNK_3 = 3,
+		LR_TOP = 4,
+		LR_BOTTOM = 5
+	};
+
+	enum LimitLineFlags {
+		LIMIT_SET_1 = 1 /* right/bottom */,
+		LIMIT_SET_2 = 2 /* top/left */,
+		VERTICAL_SPRITE_2 = 8 /* unused? */,
+		TOP = 16,
+		BOTTOM = 32,
+		LEFT = 64,
+		RIGHT = 128,
+		NOT_PERMEABLE_1 = 256 /* top/left */,
+		NOT_PERMEABLE_2 = 512 /* right/bottom */,
+		UNK_1000 = 4096,
+		UNK_2000 = 8192,
+		UNK_4000 = 16384
 	};
 
 	u32 behaviours; //type?
@@ -2764,6 +2814,27 @@ public:
 	void placeTile(u16 x, u16 y, int layer, int tile);
 
 	void makeSplash(float x, float y, int type); // 80078410
+
+	limitLineEntry_s* getFreeLineLimitSlot(int zoneId) {
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 16; j++) {
+				if (limitLines[zoneId][i][j].flags == 0) {
+					return &limitLines[zoneId][i][j];
+				}
+			}
+		}
+
+		OSReport("No free limit line slots in zone %d\n", zoneId);
+		return 0;
+	}
+
+	limitLineEntry_s* addLineLimitButBetter(limitLineEntry_s* limitLineEntry, int zoneId) {
+		limitLineEntry_s *entry = getFreeLineLimitSlot(zoneId);
+		memcpy(entry, limitLineEntry, sizeof(limitLineEntry_s));
+		entry->flags |= LIMIT_SET_1 | LIMIT_SET_2;
+
+		return entry;
+	}
 };
 
 

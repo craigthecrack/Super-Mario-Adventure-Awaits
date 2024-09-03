@@ -91,3 +91,4 @@ modules:
   # - processed/snakeBlock.yaml # commented, until fix
   - processed/newSfx.yaml
   - processed/spikeTrap.yaml
+  - processed/cameraScrollLimiter.yaml

@@ -1937,6 +1937,29 @@ class SpriteImage_Draglet(SLib.SpriteImage_StaticMultiple):  # 539
 
         super().dataChanged()
 
+class SpriteImage_CoinStack(SLib.SpriteImage_StaticMultiple):  # 540
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.offset = (0, 0)
+
+    @staticmethod
+    def loadImages():
+        if 'CoinStack0Rot0' in ImageCache: return
+        for i in range(16):
+            for j in range(4):
+                ImageCache[f'CoinStack{i}Rot{j}'] = SLib.GetImg(f'coin_stack_{i}_rot{j}.png')
+
+    def dataChanged(self):
+        nybble5 = (self.parent.spritedata[2] >> 4) & 0xF
+        y_rot = (nybble5 >> 2) & 0x3
+
+        color = self.parent.spritedata[2] & 0xF
+
+        s = f'CoinStack{color}Rot{y_rot}'
+        self.image = ImageCache[s] if ImageCache[s] else ImageCache[f'CoinStack0_Rot0']
+
+        super().dataChanged()
+
 ImageClasses = {
     20: SpriteImage_NewerGoomba,
     21: SpriteImage_NewerParaGoomba,
@@ -2013,4 +2036,5 @@ ImageClasses = {
     537: SpriteImage_SpikeTrap,
     538: SpriteImage_CameraScrollLimiter,
     539: SpriteImage_Draglet,
+    540: SpriteImage_CoinStack,
 }

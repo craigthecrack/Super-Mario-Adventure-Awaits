@@ -2638,6 +2638,9 @@ SECTIONS {
 	GetParent__7fBase_cFv = 0x801626D0;
 	doSearchNearPlayer__8dActor_cFP7Point2dP7Point2d = 0x80064790;
 
+	/* Coin Stack */
+	daPyMng_c_incCoin = 0x80060250;
+
 	.text : {
 		FILL (0)
 

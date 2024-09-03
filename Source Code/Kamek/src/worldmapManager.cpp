@@ -156,6 +156,15 @@ void dWMManager_c::CSGLoadLevelNumberFromLevelInfo(int *param_1, int param_2) {
 						break;
 				}
 			} else {
+				// fix for completed levels with the airship icon
+				if (level->displayLevel == 38) {
+					SaveBlock *save = GetSaveFile()->GetBlock(-1);
+					u32 conds = save->GetLevelCondition(World, Level);
+
+					if (conds & COND_NORMAL)
+						T_cSelect_pic->SetString(L"?"); // anchor icon
+				}
+
 				levelname = dLevelInfo_c::s_info.getNameForLevel(level);
 			}
 			WriteAsciiToTextBox(T_levelName_00, levelname);
@@ -180,11 +189,6 @@ void dWMManager_c::CSGLoadLevelNumberFromLevelInfo(int *param_1, int param_2) {
 			}
 		}
 	}
-
-	// Stuff for the beta Newer MapHUD
-	//setupFooterInfo();
-	//setupHeaderInfo();
-	//setupOtherStuff();
 
 	return;
 }

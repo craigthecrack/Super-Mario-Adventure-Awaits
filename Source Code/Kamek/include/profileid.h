@@ -556,6 +556,7 @@ enum
 	BoomerangHax = 536,
 	SpikeTrap = 537,
 	CameraScrollLimiter = 538,
+	Meragon = 539,
 
     Num
 };
@@ -1382,6 +1383,7 @@ enum
 	BoomerangHax, //806
 	SpikeTrap, //807
 	CameraScrollLimiter, //808
+	Meragon, //809
 
     Num
 };

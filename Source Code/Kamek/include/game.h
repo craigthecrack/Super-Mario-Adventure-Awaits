@@ -2041,6 +2041,8 @@ public:
 	}
 };
 
+class dAcPy_c; // Forward declaration
+
 class dActor_c : public dBase_c {
 public:
 	LinkListEntry link_actor;
@@ -2075,6 +2077,8 @@ public:
 	void HandleXSpeed();
 	void HandleYSpeed();
 	static dActor_c* create(Actors type, u32 settings, VEC3 *pos, void *rot);
+
+	dAcPy_c* doSearchNearPlayer(Vec2 *distance, Vec2 *relative_pos);
 };
 
 class dStageActor_c : public dActor_c {

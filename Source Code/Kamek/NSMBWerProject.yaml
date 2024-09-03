@@ -95,3 +95,4 @@ modules:
   - processed/signboard.yaml
   - processed/checkWater.yaml
   - processed/midwayFlag.yaml
+  - processed/meragon.yaml

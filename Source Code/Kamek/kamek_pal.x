@@ -2634,6 +2634,10 @@ SECTIONS {
 	GetLightBTI = 0x800cac00;
 	LightTypeArray = 0x80317a20;
 
+	/* Draglet */
+	GetParent__7fBase_cFv = 0x801626D0;
+	doSearchNearPlayer__8dActor_cFP7Point2dP7Point2d = 0x80064790;
+
 	.text : {
 		FILL (0)
 

@@ -1919,6 +1919,24 @@ class SpriteImage_MidwayFlag(SLib.SpriteImage_StaticMultiple):  # 188
 
         super().dataChanged()
 
+class SpriteImage_Draglet(SLib.SpriteImage_StaticMultiple):  # 539
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.offset = (-4, -3)
+
+    @staticmethod
+    def loadImages():
+        if 'Draglet0' in ImageCache: return
+        for i in range(8):
+            ImageCache[f'Draglet{i}'] = SLib.GetImg(f'draglet{i}.png')
+
+    def dataChanged(self):
+        color = (self.parent.spritedata[2] & 0xF) % 8
+
+        self.image = ImageCache[f'Draglet{color}']
+
+        super().dataChanged()
+
 ImageClasses = {
     20: SpriteImage_NewerGoomba,
     21: SpriteImage_NewerParaGoomba,
@@ -1994,4 +2012,5 @@ ImageClasses = {
     533: SpriteImage_LineEvent,
     537: SpriteImage_SpikeTrap,
     538: SpriteImage_CameraScrollLimiter,
+    539: SpriteImage_Draglet,
 }

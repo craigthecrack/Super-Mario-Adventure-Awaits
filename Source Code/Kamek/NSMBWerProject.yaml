@@ -92,3 +92,4 @@ modules:
   - processed/newSfx.yaml
   - processed/spikeTrap.yaml
   - processed/cameraScrollLimiter.yaml
+  - processed/signboard.yaml

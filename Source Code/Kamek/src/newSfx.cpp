@@ -6,9 +6,11 @@
 const char* SFXNameList [] = {
 	"original",				// 1999, DON'T USE THIS ONE
 	"spike_trap",			// 2000, Spike Trap
-	"meragon_fire_start",	// 2001
-	"meragon_fire",			// 2002
-	"meragon_wing",			// 2003
+	"meragon_fire_start",	// 2001, Draglet
+	"meragon_fire",			// 2002, Draglet
+	"meragon_wing",			// 2003, Draglet
+	"tenten_step_l",      	// 2004, Biddybud
+	"tenten_step_r",      	// 2005, Biddybud
 	NULL
 };
 

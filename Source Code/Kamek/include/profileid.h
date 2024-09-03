@@ -558,6 +558,8 @@ enum
 	CameraScrollLimiter = 538,
 	Meragon = 539,
 	CoinStack = 540,
+	Tenten = 541,
+	TentenWing = 542,
 
     Num
 };
@@ -1386,6 +1388,8 @@ enum
 	CameraScrollLimiter, //808
 	Meragon, //809
 	CoinStack, //810
+	Tenten, //811
+	TentenWing, //812
 
     Num
 };

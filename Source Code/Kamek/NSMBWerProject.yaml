@@ -97,3 +97,4 @@ modules:
   - processed/midwayFlag.yaml
   - processed/meragon.yaml
   - processed/coinStack.yaml
+  - processed/tenten.yaml

@@ -1,0 +1,1 @@
+#define SFX_SPIKE_TRAP 2000

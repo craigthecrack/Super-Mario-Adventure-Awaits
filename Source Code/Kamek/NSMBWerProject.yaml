@@ -90,3 +90,4 @@ modules:
   - processed/randomcrap.yaml
   # - processed/snakeBlock.yaml # commented, until fix
   - processed/newSfx.yaml
+  - processed/spikeTrap.yaml

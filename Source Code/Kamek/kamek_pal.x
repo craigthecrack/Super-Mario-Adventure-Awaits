@@ -277,8 +277,6 @@ SECTIONS {
 	sub_809CAE10 = 0x809CAE10;
 
 	loc_8091288C = 0x8091288C;
-
-	pow = 0x802E5894;
 	
 	/* Portal - data */
 	PortalHook_1_byte       = 0x8154BA7B;
@@ -491,7 +489,6 @@ SECTIONS {
 
 	dStockItem = 0x807afa00;
 
-	pow = 0x802E5894;
 	onExecute_orig__14dGameDisplay_cFv = 0x801580D0;
 	onCreate_orig__14dGameDisplay_cFv = 0x80157B70;
 	instance__14dGameDisplay_c = 0x8042a608;

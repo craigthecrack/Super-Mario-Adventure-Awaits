@@ -356,15 +356,6 @@ void daBoomerangHax_c::updateModelMatrices() {
 /*Don't ask me how does it work, because i don't know*/
 /*****************************************************/
 
-extern "C" float pow(float num, float power);
-
-int getNybbleValue(u32 settings, int fromNybble, int toNybble) {	 //Made that function because i wanted to, even if it's kinda useless. So shut up Meatball/CLF78
-	int numberOfNybble = (toNybble  - fromNybble) + 1;               //gets how many nybbles are used for the process (example: nybbles 4-6 -> there's nybbles 4, 5 and 6 used -> numberOfNybble = 3) 
-	int valueToUse = 48 - (4 * toNybble);                            //gets the value to use with the bitshift at the end 
-	int fShit = pow(16, numberOfNybble) - 1;                         //gets the value to use with the "&" operator at the end 
-	return ((settings >> valueToUse) & fShit);                       //uses everything to make the nybble value 
-}
-
 int daGabonRock_c::getsettings() {									 //I know bleh bleh bleh that's not optimised, but lemme ask something: Do I care ? The answer is no.
 	int orig_val = this->onCreate_orig();
 	if(getNybbleValue(this->settings, 12, 12) > 1) {

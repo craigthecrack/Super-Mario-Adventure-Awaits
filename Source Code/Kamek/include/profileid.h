@@ -554,6 +554,7 @@ enum
 	BubbleSuit = 534,
 	BubbleCoin = 535,
 	BoomerangHax = 536,
+	SpikeTrap = 537,
 
     Num
 };
@@ -1378,6 +1379,7 @@ enum
 	BubbleSuit, //804
 	BubbleCoin, //805
 	BoomerangHax, //806
+	SpikeTrap, //807
 
     Num
 };

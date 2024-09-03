@@ -5,7 +5,7 @@
 
 const char* SFXNameList [] = {
 	"original",				// 1999, DON'T USE THIS ONE
-	// add more sfx here	// 2000
+	"spike_trap",			// 2000, Spike Trap
 	NULL
 };
 

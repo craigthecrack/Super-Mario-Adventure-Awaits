@@ -2624,6 +2624,16 @@ SECTIONS {
 	continueOriginalCheckWater = 0x80075274;
 	mGameFlag__7dInfo_c = 0x8042a260;
 
+	/* Light & Light Path */
+	init__Q25Light18dCircleLightMask_cFP12mAllocator_cUi = 0x800ccb70;
+	execute__Q25Light18dCircleLightMask_cFv = 0x800ccc30;
+	draw__Q25Light18dCircleLightMask_cFv = 0x800ccce0;
+	setup__Q25Light7dMask_cFP16mHeapAllocator_cPQ25Light8spline_cUi = 0x800cb580;
+	execute__Q25Light7dMask_cFv = 0x800cb6a0;
+	draw__Q25Light7dMask_cFv = 0x800cb6c0;
+	GetLightBTI = 0x800cac00;
+	LightTypeArray = 0x80317a20;
+
 	.text : {
 		FILL (0)
 

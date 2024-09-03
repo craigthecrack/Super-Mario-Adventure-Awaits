@@ -2606,6 +2606,12 @@ SECTIONS {
 	skipFromRemoveSFX = 0x80AA85DC;
 	returnFromDoNotMoveIfEvent = 0x80AA72E0;
 
+	/* MoreSFX */
+	NewSFXTable = 0x80450000;
+	NewSFXIndexes = 0x80460000;
+	doneWithNewSFXHax = 0x80283CE4;
+	PlaySoundWithFunctionB4_2 = 0x801951E4;
+
 	.text : {
 		FILL (0)
 

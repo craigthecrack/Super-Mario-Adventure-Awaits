@@ -35,6 +35,8 @@ float cos(float x);
 float sin(float x);
 float ceil(float x);
 float floor(float x);
+float pow(float x, float y);
+float sqrt(float x) { return pow(x, 0.5f); }
 }
 enum Direction {
 	RIGHT = 0,
@@ -65,6 +67,8 @@ void *DVD_GetFile(void *dvdclass2, const char *arc, const char *file, u32 *lengt
 
 int MakeRandomNumber(int count);
 int MakeRandomNumberForTiles(int count);
+int RandInt(int min, int max) { return MakeRandomNumber(max - min) + min; }
+float RandFloat(float min, float max) { return ((float)MakeRandomNumber(10000) / 10000.0f) * (max - min) + min; }
 
 
 extern int Player_Active[4];
@@ -2088,7 +2092,6 @@ public:
 	u16 *spriteShortStorage;
 	union {
 		u16 spriteFlagNum;
-
 		struct {
 			u8 eventId2; // nybble 1-2
 			u8 eventId1; // nybble 3-4
@@ -4278,5 +4281,22 @@ public:
 };
 
 extern "C" void *MapSoundPlayer(void *SoundRelatedClass, int soundID, int unk);
+
+int getNybbleValue(u32 settings, int fromNybble, int toNybble) {
+	int numberOfNybble = (toNybble - fromNybble) + 1;
+	int valueToUse = 48 - (4 * toNybble);
+	int fShit = pow(16, numberOfNybble) - 1;
+	return ((settings >> valueToUse) & fShit);
+}
+
+void getSpriteTexResName(char* buffer, int resID) {
+	sprintf(buffer, "g3d/t%02d.brres", resID);
+	buffer[strlen(buffer)] = 0;
+}
+
+void getSpriteTexResName255(char* buffer, int resID) {
+	sprintf(buffer, "g3d/t%03d.brres", resID);
+	buffer[strlen(buffer)] = 0;
+}
 
 #endif

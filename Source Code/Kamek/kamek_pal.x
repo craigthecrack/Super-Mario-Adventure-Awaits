@@ -1845,6 +1845,7 @@ SECTIONS {
 	sin = 0x802E87B4;
 	ceil = 0x802E8134;
 	floor = 0x802E8374;
+	pow = 0x802E5894;
 
 	LayoutHelper_Link = 0x801637A0;
 

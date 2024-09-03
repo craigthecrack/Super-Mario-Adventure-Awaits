@@ -1357,6 +1357,13 @@ public:
 		Callback callback;
 	};
 
+	enum CollisionTypes {
+		NORMAL = 0,
+		CIRCLE = 1,
+		VERTICAL_TRAPEZOID = 2,
+		HORIZONTAL_TRAPEZOID = 3
+	};
+
 	ActivePhysics();
 	virtual ~ActivePhysics();
 

@@ -2641,6 +2641,9 @@ SECTIONS {
 	/* Coin Stack */
 	daPyMng_c_incCoin = 0x80060250;
 
+	/* Path Controller */
+	GetRail = 0x800D91B0;
+
 	.text : {
 		FILL (0)
 

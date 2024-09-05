@@ -2,7 +2,7 @@
 #include "fileload.h"
 #include "nsmbwVer.h"
 
-#define GAME_NAME "NSMBWer+ 1.1.1 (DIRTY)"
+#define GAME_NAME "SMAA v0.0.0"
 const bool dsisrFun = false;
 const bool gprFun = false;
 
@@ -26,81 +26,27 @@ struct OSContext
     float fppr[32];
 };
 
-/*inline bool GetBit(u32 num, char m)
-{
-    char n = 31 - m;
-    return ((num >> n) & 1);
-}
-void ShowMainInfo(void * _osContext, u32 dsisr, u32 dar)
-{
-    void* osContext = _osContext;
-    //osContext += 0x198;
-    osContext = (void *)(((char *)osContext) + 0x198);
-    srr0 = *(u32 *)(osContext);
-    //osContext += 0x4;
-    osContext = (void *)(((char *)osContext) + 0x4);
-    u32 srr1 = *(u32 *)(osContext);
-
-    nw4r::db::Exception_Printf_("SRR0:    %08X\n\n", srr0);
-
-    if (srr1Fun)
-    {
-        //SRR1 fun.
-        //Read 16-31
-        char * enabled = "enabled.";
-        char * disabled = "disabled.";
-        nw4r::db::Exception_Printf_("External interrupt %s\n", (GetBit(srr1, 16) ? enabled : disabled));
-        nw4r::db::Exception_Printf_("Privilege level: %s\n", (GetBit(srr1, 17) ? "user" : "supervisor"));
-        nw4r::db::Exception_Printf_("Floating-point %s\n", (GetBit(srr1, 18) ? enabled : disabled));
-        nw4r::db::Exception_Printf_("Machine check %s\n", (GetBit(srr1, 19) ? enabled : disabled));
-        //
-        nw4r::db::Exception_Printf_("Single-step trace %s\n", (GetBit(srr1, 21) ? enabled : disabled));
-        nw4r::db::Exception_Printf_("Branch trace %s\n", (GetBit(srr1, 22) ? enabled : disabled));
-        //
-        //
-        nw4r::db::Exception_Printf_("Exception prefix: %s\n", (GetBit(srr1, 25) ? "0xFFF....." : "0x000....."));
-        nw4r::db::Exception_Printf_("Instruction address translation %s\n", (GetBit(srr1, 26) ? enabled : disabled));
-        nw4r::db::Exception_Printf_("Data address translation %s\n", (GetBit(srr1, 27) ? enabled : disabled));
-        //
-        nw4r::db::Exception_Printf_("Process is %s (performance)\n", (GetBit(srr1, 29) ? "marked" : "not marked"));
-        nw4r::db::Exception_Printf_("Exception is %s\n", (GetBit(srr1, 30) ? "recoverable" : "not recoverable"));
-        nw4r::db::Exception_Printf_("%s endian mode\n\n", (GetBit(srr1, 31) ? "Little" : "Big"));
-    }
-
-    if (dsisrFun)
-    {
-        //DSISR fun.
-        if (GetBit(dsisr, 0)) nw4r::db::Exception_Printf_("Crashed by load/store instruction\n");
-        if (GetBit(dsisr, 1)) nw4r::db::Exception_Printf_("Attempted access translation not found\n");
-        if (GetBit(dsisr, 4)) nw4r::db::Exception_Printf_("A memory access in not permitted\n");
-        if (GetBit(dsisr, 5)) nw4r::db::Exception_Printf_("Store/load instruction performed at a bad address\n");
-        nw4r::db::Exception_Printf_("Crashed by %s instruction\n", (GetBit(dsisr, 6) ? "store" : "load"));
-        if (GetBit(dsisr, 9)) nw4r::db::Exception_Printf_("DABR match occurs\n");
-        if (GetBit(dsisr, 11)) nw4r::db::Exception_Printf_("Instruction is eciwx or ecowx\n");
-        nw4r::db::Exception_Printf_("\n");
-    }
-}*/
 char *GetRegionAndVersion()
 {
 	NSMBWVer version = getNsmbwVer();
 	switch(version)
 	{
 		case pal:
-			return "PALv1";
+			return "EUv1";
 		case pal2:
-			return "PALv2";
+			return "EUv2";
 		case ntsc:
-			return "NTSCv1";
+			return "USv1";
 		case ntsc2:
-			return "NTSCv2";
+			return "USv2";
 		case jpn:
-			return "JPNv1";
+			return "JPv1";
 		case jpn2:
-			return "JPNv2";
+			return "JPv2";
 		case kor:
-			return "KOR";
+			return "KR";
 		case twn:
-			return "TWN";
+			return "TW";
 		default:
 			return "UNKNOWN";
 	}
@@ -130,7 +76,7 @@ char *GetErrorDescription(u16 OSError)
 void PrintContext(u16 OSError, void *_osContext, u32 _dsisr, u32 _dar)
 {
     OSContext *osContext = (OSContext *)_osContext;
-    nw4r::db::Exception_Printf_("Whoops! " GAME_NAME " has crashed - %s\n\nPlease send the information below to the mod creator\nYou can scroll through this report using the D-Pad.\n[%s]\n", GetErrorDescription(OSError), GetRegionAndVersion());
+    nw4r::db::Exception_Printf_("Whoops! " GAME_NAME " [DISC: %s] has crashed - %s\n\nPlease send the information below to\nMandy, GuttermanGaming, or Kirblue.\nYou can scroll through this report using the D-Pad.\n", GetRegionAndVersion(), GetErrorDescription(OSError));
     nw4r::db::Exception_Printf_("SRR0: %08X | DSISR: %08X | DAR: %08X\n", osContext->srr[0]);
 
     if (gprFun)

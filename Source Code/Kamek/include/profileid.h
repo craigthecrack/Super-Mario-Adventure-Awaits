@@ -554,6 +554,12 @@ enum
 	BubbleSuit = 534,
 	BubbleCoin = 535,
 	BoomerangHax = 536,
+	SpikeTrap = 537,
+	CameraScrollLimiter = 538,
+	Meragon = 539,
+	CoinStack = 540,
+	Tenten = 541,
+	TentenWing = 542,
 
     Num
 };
@@ -1378,6 +1384,12 @@ enum
 	BubbleSuit, //804
 	BubbleCoin, //805
 	BoomerangHax, //806
+	SpikeTrap, //807
+	CameraScrollLimiter, //808
+	Meragon, //809
+	CoinStack, //810
+	Tenten, //811
+	TentenWing, //812
 
     Num
 };

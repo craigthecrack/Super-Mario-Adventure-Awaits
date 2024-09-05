@@ -277,8 +277,6 @@ SECTIONS {
 	sub_809CAE10 = 0x809CAE10;
 
 	loc_8091288C = 0x8091288C;
-
-	pow = 0x802E5894;
 	
 	/* Portal - data */
 	PortalHook_1_byte       = 0x8154BA7B;
@@ -491,7 +489,6 @@ SECTIONS {
 
 	dStockItem = 0x807afa00;
 
-	pow = 0x802E5894;
 	onExecute_orig__14dGameDisplay_cFv = 0x801580D0;
 	onCreate_orig__14dGameDisplay_cFv = 0x80157B70;
 	instance__14dGameDisplay_c = 0x8042a608;
@@ -1845,6 +1842,7 @@ SECTIONS {
 	sin = 0x802E87B4;
 	ceil = 0x802E8134;
 	floor = 0x802E8374;
+	pow = 0x802E5894;
 
 	LayoutHelper_Link = 0x801637A0;
 
@@ -2589,6 +2587,62 @@ SECTIONS {
     returnFrom_CharacterChangeSelectContents_MakeMarioIconPanesInvisible = 0x807733D8;
     returnFrom_CharacterChangeSelectBase_FixIconUpdate = 0x807735A0;
     returnFrom_CharacterChangeSelectBase_FixIconUpdate_2 = 0x80773658;
+
+	continueFromFirstLoop = 0x80AA7C10;
+	continueFromNodeLoop = 0x80AA7C80;
+	continueFromSnakeBlockLoop3 = 0x80AA7454;
+	continueFromSnakeBlockBackwards = 0x80AA7404;
+	continueFromStoreIsLoopToR9_1 = 0x80AA85A0;
+	continueFromStoreIsLoopToR9_2 = 0x80AA85B0;
+	continueFromOtherDirectionsSpawn = 0x80AA789C;
+	continueFromAdjustSpawnPosition = 0x80AA6F38;
+	continueFromRemoveSFX = 0x80AA85B0;
+	continueFromDoNotMoveIfEvent = 0x80AA72C4;
+	continueFromMakeTIBTwiceAsBig = 0x80AA7C18;
+	doSomethingElseWithTravelInfoBuffer__10SnakeSubExFv = 0x80AA73E0;
+	skipFromRemoveSFX = 0x80AA85DC;
+	returnFromDoNotMoveIfEvent = 0x80AA72E0;
+
+	/* MoreSFX */
+	NewSFXTable = 0x80450000;
+	NewSFXIndexes = 0x80460000;
+	doneWithNewSFXHax = 0x80283CE4;
+	PlaySoundWithFunctionB4_2 = 0x801951E4;
+
+	/* Smooth Scroll Limiter */
+	getZoneByID__9dCourse_cFUcP5mRect = 0x8008e410;
+
+	/* Check Water */
+	continueOriginalCheckWater = 0x80075274;
+	
+	/* Midway Flag */
+	midwayFlagOnCreate = 0x807e2130;
+	midwayFlagOnExecute = 0x807e2410;
+	midwayFlagPowerUp = 0x807e2ca0;
+	StateID_Wait__15daChukanPoint_c = 0x80997d98;
+	StateID_SeaWait__15daChukanPoint_c = 0x80997e18;
+	continueOriginalCheckWater = 0x80075274;
+	mGameFlag__7dInfo_c = 0x8042a260;
+
+	/* Light & Light Path */
+	init__Q25Light18dCircleLightMask_cFP12mAllocator_cUi = 0x800ccb70;
+	execute__Q25Light18dCircleLightMask_cFv = 0x800ccc30;
+	draw__Q25Light18dCircleLightMask_cFv = 0x800ccce0;
+	setup__Q25Light7dMask_cFP16mHeapAllocator_cPQ25Light8spline_cUi = 0x800cb580;
+	execute__Q25Light7dMask_cFv = 0x800cb6a0;
+	draw__Q25Light7dMask_cFv = 0x800cb6c0;
+	GetLightBTI = 0x800cac00;
+	LightTypeArray = 0x80317a20;
+
+	/* Draglet */
+	GetParent__7fBase_cFv = 0x801626D0;
+	doSearchNearPlayer__8dActor_cFP7Point2dP7Point2d = 0x80064790;
+
+	/* Coin Stack */
+	daPyMng_c_incCoin = 0x80060250;
+
+	/* Path Controller */
+	GetRail = 0x800D91B0;
 
 	.text : {
 		FILL (0)

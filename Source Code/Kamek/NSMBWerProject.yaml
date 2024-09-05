@@ -87,3 +87,14 @@ modules:
   - processed/qblock.yaml
   # - processed/worldmapstuff.yaml
   - processed/fileselecticons.yaml
+  - processed/randomcrap.yaml
+  # - processed/snakeBlock.yaml # commented, until fix
+  - processed/newSfx.yaml
+  - processed/spikeTrap.yaml
+  - processed/cameraScrollLimiter.yaml
+  - processed/signboard.yaml
+  - processed/checkWater.yaml
+  - processed/midwayFlag.yaml
+  - processed/meragon.yaml
+  - processed/coinStack.yaml
+  - processed/tenten.yaml

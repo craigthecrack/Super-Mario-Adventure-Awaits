@@ -9,5 +9,7 @@ int getUnspentStarCoinCount();
 int getStarCoinCount();
 void getNewerLevelNumberString(int world, int level, wchar_t *dest);
 
+const wchar_t *getWorldNumber(int world);
+const wchar_t *getLevelNumber(int world, int level);
 
 #endif /* NEWER_H */

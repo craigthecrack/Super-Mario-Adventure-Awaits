@@ -632,6 +632,15 @@ int dMakeYourOwn::onCreate() {
 
 			// setupAnim("anim38", 1.0); 
 			break;	
+
+		case 50:		// RYOMRes4 Adventure Awaits logo
+
+			setupModel("RYOMRes4", "g3d/aalogo.brres", "AdventureAwaits");
+			SetupTextures_MapObj(&bodyModel, 0);
+			this->pos.z = 0.0;
+
+
+			break;
 	}
 
 	allocator.unlink();

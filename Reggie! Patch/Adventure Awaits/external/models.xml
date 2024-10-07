@@ -212,6 +212,10 @@
         <property name="Model" value="Tree Canopy D (Do Not Animate)" />
         <property name="From Level" value="01-15" />
     </option>
+    <option value="50">
+        <property name="Model" value="Adventure Awaits logo(Do Not Animate(for now atleast))" />
+        <property name="From Level" value="Title Screen" />
+    </option>
     <option value="253">
         <property name="Model" value="Opening, Ending, and Credits" />
         <property name="From Level" value="DoNotUseMe" />

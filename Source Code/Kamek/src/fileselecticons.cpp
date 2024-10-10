@@ -83,15 +83,23 @@ void dDateFile_c::newLoadInfoForSaveBlock(SaveBlock *block) {
     switch (block->lastP1Character) {
         default: //mario
             P_iconM_00->SetVisible(true);
+            T_x_00->colour2 = marioColor;
+            T_zanki_00->colour2 = marioColor;
             break;
         case 1: //luigi
             P_iconL_00->SetVisible(true);
+            T_x_00->colour2 = luigiColor;
+            T_zanki_00->colour2 = luigiColor;
             break;
         case 2: //boad
             P_iconB_00->SetVisible(true);
+            T_x_00->colour2 = kinoBColor;
+            T_zanki_00->colour2 = kinoBColor;
             break;
         case 3: //yoad
             P_iconY_00->SetVisible(true);
+            T_x_00->colour2 = kinoYColor;
+            T_zanki_00->colour2 = kinoYColor;
             break;
     }
     

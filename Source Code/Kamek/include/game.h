@@ -79,6 +79,12 @@ extern int Player_Flags[4];
 extern int Player_Lives[4];
 extern int Player_Coins[4];
 
+// player life colors
+GXColor marioColor = {217, 35, 35, 255};
+GXColor luigiColor = {64, 184, 51, 255};
+GXColor kinoBColor = {74, 91, 255, 255};
+GXColor kinoYColor = {255, 198, 45, 255};
+
 struct StartLevelInfo {
 	int maybeUnused;
 	unsigned char replayTypeMaybe; // 0x04
@@ -4380,5 +4386,41 @@ void getSpriteTexResName255(char* buffer, int resID) {
 	sprintf(buffer, "g3d/t%03d.brres", resID);
 	buffer[strlen(buffer)] = 0;
 }
+
+// not 100% accurate due to the P1 Change feature extending the class
+class dCharacterChangeSelectContents_c : public dBase_c {
+	public:
+		m2d::EmbedLayout_c layout;
+		dStateWrapper_c<dCharacterChangeSelectContents_c> state;
+		u32 unk;
+
+		nw4r::lyt::Pane *RootPane;
+
+		nw4r::lyt::Pane *N_cSelectCon_00, *N_cSelectCon_01;
+
+		nw4r::lyt::Picture
+			*PbuttonShadow_00, *PbuttonShadow_01,
+			*P_lui_00, *P_lui_01,
+			*P_kinoB_00, *P_kinoB_01,
+			*P_kinoY_00, *P_kinoY_01;
+
+		nw4r::lyt::TextBox
+			*T_zanki_01, *T_zanki_00,
+			*T_kakeru_00, *T_kakeru_01;
+
+		u32 _284, _288; // value of 288 is assigned to 284
+		u32 _28C, _290, _294, _298; // all are set to 6 besides _298, which is set to 2
+
+		bool layoutCreated, visible;
+		u8 unk2[0x6]; // probably more bools and crap
+
+		int marioLives_maybe, luigiLives, yellowToadLives, blueToadLives;
+
+		// funcRun changes from 0 to 1 between the run, so it updates the next "button", then the old one
+		void colorizeMarioLives(int funcRun);
+		void colorizeLuigiLives(int funcRun);
+		void colorizeYellowToadLives(int funcRun);
+		void colorizeBlueToadLives(int funcRun);
+};
 
 #endif

@@ -20,6 +20,7 @@ modules:
   # - processed/levelnames.yaml
   - processed/pregame.yaml 
   - processed/layouthax.yaml
+  - processed/characterChange.yaml
   - processed/animtiles.yaml
   - processed/soundPlayer.yaml
   # - processed/bowserKey.yaml

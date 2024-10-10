@@ -6,6 +6,8 @@
 .extern SetVolume__Q44nw4r3snd6detail10BasicSoundFfi # 0x80267560, nw4r_snd_detail_BasicSound_SetVolume in the og
 .extern getPictures__Q23m2d13EmbedLayout_cCFPPCcPPQ34nw4r3lyt7Picturei # 0x800C8F30
 
+.extern colorizeMarioLives
+
 .extern DWORD_8093CDF0 # 0x8093CDF0
 .extern DWORD_8093F520 # 0x8093F520
 .extern WMPlayer_loadSubplayers # 0x80902BD0
@@ -489,6 +491,13 @@ CharacterChangeSelectBase_FixIconUpdate_MarioUnlocked:
     rlwinm  r0, r0, 0, 24, 30
     ori     r0, r0, 0x01
     stb     r0, 0xBB(r5)
+
+    # add mario's colors
+    slwi r0, r31, 2
+    add r5, r30, r0
+    mr r3, r5
+    li r4, 0
+    bl colorizeMarioLives
 
     b returnFrom_CharacterChangeSelectBase_FixIconUpdate_2
 

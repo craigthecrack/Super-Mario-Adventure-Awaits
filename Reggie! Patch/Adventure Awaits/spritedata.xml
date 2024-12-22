@@ -337,6 +337,18 @@
     <checkbox nybble="12.4" title="Unknown Flag 12 (1)" comment="An unknown setting for Nybble 12." advanced="True" advancedcomment="Bit 47-48 may be a list, but only value 2 has been defined. Value 3 is confirmed to CRASH the game, so do not activate this with Crush Forever. However, value 1 may provide different effects. Experimenting and testing are required."/>
   </sprite> <!-- #48: Big Thwomp -->
   
+  <sprite id="53" name="Effect - Quicksand" notes="This will draw the animated quicksand effect over a specific Location ID. The actual quicksand sinking effect is only obtained through a specific tileset object. See Dependency Notes for examples. The quicksand animation is always placed behind Layer 0 objects.&lt;br&gt;&lt;br&gt;Location Quicksand: If you assign a Location ID, you can cause sand to appear only within the chosen Location instead of across the entire stage.&lt;br&gt;&lt;br&gt;Quicksand Crest's Maximum Length: The crest of Quicksand will stop drawing past 8192 pixels (512 blocks). You can avoid this by making multiple instances of Location Quicksand. Make sure that the widths of the locations are no greater than 8192, and that they are multiples of 16.">
+    <dependency notes="Pa1_sabaku (Desert): Object 24&lt;br&gt;&lt;br&gt;Pa1_sabaku_chika (Desert Cave): Object 26&lt;br&gt;&lt;br&gt;Pa1_toride_sabaku (Desert Tower): Object 107"/>
+    <checkbox nybble="10.1" title="Flat Top" comment="When enabled, this removes the animated crest effect on the top portion of the quicksand. This will cause a 'square' look." comment2="This should be used when the quicksand connects with a ceiling or other Layer 1 terrain."/>
+    <value nybble="11.2-12.4" title="Location ID" comment="This determines the Location where the quicksand animation will be created." idtype="Location"/>
+	<list nybble="4" title="Color">
+      <entry value="0">Default (Yellow)</entry>
+      <entry value="1">White (Snow)</entry>
+      <entry value="2">Red</entry>
+	  <entry value="3">Brown (Mud)</entry>
+    </list>
+  </sprite> <!-- #53: Effect - Quicksand -->
+  
   <sprite id="57" name="Koopa Troopa" sizehacks="True" notes="Your standard Koopa Troopa. Place it in the level and it will walk towards Mario when it loads. It can either be set to walk off ledges, or turn around at ledges.">
     <dualbox nybble="12.4" title1="Walks Off Ledges" title2="Turns Around At Ledges" comment="This determines if the Koopa Troopa will mindlessly walk off of ledges or if it will turn around when it reaches a ledge." comment2="This also changes the color of the Koopa Troopa."/>
     <list nybble="6" title="Color" comment="This determines the color of the Koopa Troopa." requirednybble="12.4" requiredval="0">
@@ -580,6 +592,142 @@
       <entry value="4">Lava</entry>
     </list>
   </sprite> <!-- #105: Pokey -->
+  
+    <!-- Moving Water - Delay at Starting Point: Comment, accuracy when involving events. -->
+  <!-- title1="Rising Forever while On" title="Falling Forever while On" - True or False? What happens when using a Triggering Event on a permanently rising or permanently falling Moving Water? What happens when before the event activates? What happens when it activates? What happens when it is deactivated? What happens when it's activated again? -->
+  <!-- title1="Rising and Falling while On, Returns when Off" - True or False? Does it very quickly return or will it instantly (glitchy looking) return to its starting position? -->
+  <!-- Dear Dog that took around two hours to sort that mess out piece by piece. It's wonderful what these new display settings can actually accomplish for making this type of information actually usable! -->
+  <sprite id="138" name="Water" noyoshi="True" notes="Place this in the level to generate water. There are many different ways to use this type of Water.&lt;br&gt;&lt;br&gt;Underwater Zone: If you just want to create an underwater zone, check Flat Top and leave everything else blank. Then place the Water about 6 blocks above your upper Zone boundary.
+ &lt;br&gt;&lt;br&gt;Moving Water: You can also create water that rises and/or falls. This gets a little complicated, so be sure to read the related settings.
+ &lt;br&gt;&lt;br&gt;Water Crest's Maximum Length: The crest of Water will stop drawing past 8192 pixels (512 blocks). You can avoid this by making multiple instances of Water in Locations. Make sure that the widths of the locations are no greater than 8192, and that they are multiples of 16.">
+    <dependency notes="When using Moving Water, the Water becomes loaded across the entire Area instead of just the active Zone. Please build your levels with this in mind. Additionally, do not use more than one Moving Water in the same Area as only the top (highest Y-Axis) one will take effect. If you need Moving Water in multiple Zones within the same area, use [285] Rising and Falling Water instead. Also, be sure to reset your Sprite Settings if you switch between different setting groups of Moving Water or Location Water to prevent unusual bugs and behavior.">
+      <suggested sprite="317"/> <!-- Lets bubbles exist -->
+    </dependency>
+   <!-- The different displays of the Speed option -->
+    <list nybble="5.2-5.4" title="Moving Water - Rising Speed" comment="This determines the speed at which the Water will rise, or rise and fall." requirednybble="5.1" requiredval="0">
+      <entry value="0">No Movement</entry>
+      <entry value="5">Very Slow</entry>
+      <entry value="6">Slow (Standard)</entry>
+      <entry value="7">Medium</entry>
+      <entry value="4">Fast</entry>
+      <entry value="1">Very Fast</entry>
+      <entry value="2">Very Fast</entry>
+      <entry value="3">Very Fast</entry>
+    </list> <!-- This version of the list shows when Rising Water is set, regardless of Distance, Delay, or Triggering Event ID -->
+    <list nybble="5.2-5.4" title="Moving Water - Falling Speed" comment="This determines the speed at which the Water will fall." requirednybble="5.1,8-9" requiredval="1, 0">
+      <entry value="0">No Movement</entry>
+      <entry value="5">Very Slow</entry>
+      <entry value="6">Slow (Standard)</entry>
+      <entry value="7">Medium</entry>
+      <entry value="4">Fast</entry>
+      <entry value="1">Very Fast</entry>
+      <entry value="2">Very Fast</entry>
+      <entry value="3">Very Fast</entry>
+    </list> <!-- This version of the list shows when Falling Water is set, and Distance is not set. You're okay... for now. -->
+    <list nybble="5.2-5.4" title="I really wouldn't do that if I were you..." comment="Falling Water works in a peculiar way. When the appropriate event has not been activated, or there is no corresponding event, [Never ON] then the water surface will appear [Distance] blocks higher. The water will then sink this many blocks, respecting any delays. After waiting for the delay at the bottom, the water surface will not rise again. Not exactly. Instead, it will 'skip' the rising part and 'jump' to immediately to the top. Additionally, using this with events will cause the water to rise, instead of falling. [ON] But the starting point is the same higher distance. The difference is that the water rises continuously as long as the event is enabled. [Endless Rising] If it is disabled, [OFF after ON] the water surface will 'jump' back to where it started and remain there until the event is re-enabled. [Why bother?] Additionally, 1-5 on Movement Speed values have some additional odd glitchiness. Supposedly. So please, stop trying to combine settings like this. Or your level will suck." requirednybble="5.1,8-9" requiredval="1, 1-255">
+      <entry value="0">Reset Sprite Settings!</entry>
+      <entry value="5">Really Not Recommended</entry>
+      <entry value="6">Slow (Standard) (Not Recommended)</entry>
+      <entry value="7">Medium (Not Recommended)</entry>
+      <entry value="4">Really Not Recommended</entry>
+      <entry value="1">Really Not Recommended</entry>
+      <entry value="2">Really Not Recommended</entry>
+      <entry value="3">Really Not Recommended</entry>
+    </list> <!-- This version of the list shows when Falling Water is set, and Distance is also is set. You bad bad boy... -->
+   <!-- Rising vs Falling Options -->
+    <dualbox nybble="5.1" title1="Rising Forever" title2="Falling Forever" comment="This determines which direction the Water will move." requirednybble="5.2-5.4,8-9,6-7,1-2" requiredval="1-7, 0, 0, 0"/> <!-- Appears when Speed is set and Distance, Delays, and Triggering Event ID are NOT set -->
+    <dualbox nybble="5.1" title1="Rising Forever while On" title2="Falling Forever while On" comment="This determines which direction the Water will move while the Triggering Event is activated." requirednybble="5.2-5.4,8-9,6-7,1-2" requiredval="1-7, 0, 0, 1-255"/> <!-- Appears when Speed and Triggering Event ID are set and Distance is NOT set -->
+    <dualbox nybble="5.1" title1="Automatically Rising and Falling" title2="[Extremely Buggy]" comment="The Water will automatically rise and fall in accordance with the set delays." requirednybble="5.2-5.4,8-9,1-2" requiredval="1-7, 1-255, 0"/> <!-- Appears when Speed and Distance are set, and Triggering Event ID is not set. -->
+    <dualbox nybble="5.1" title1="Rises Distance while On, Falls when Off" title2="[Extremely Buggy]" comment="The Water will rise the Distance value once activated, and stay at the top until the Triggering Event is deactivated. If the Triggering Event is deactivated before it rises the full distance, it will finish rising, then immediately start to fall." comment2="This option only applies if Delay values are both set to 0, Distance is set, and Triggering ID is set. Do not use [Extremely Buggy]. No really, don't. It won't help you any." requirednybble="5.2-5.4,8-9,6-7,1-2" requiredval="1-7, 1-255, 0, 1-255"/> <!-- Appears when Speed and Distance and Triggering Event ID are set, AND when Delays are NOT set. -->
+    <dualbox nybble="5.1" title1="Rising and Falling while On, Glitch-Returns when Off" title2="[Extremely Buggy]" comment="The Water will rise and fall in accordance with the set delays while the Triggering Event is activated." comment2="When the Triggering Event is deactivated, the Water will immediately return to its starting position in a glitchy manner. It is highly recommended to not cause this to happen in your level design. Use Event Chainers with Delays or the Event Looper to get this type of timing instead." requirednybble="5.2-5.4,8-9,6-7,1-2" requiredval="1-7, 1-255, 1-255, 1-255"/> <!-- Appears when Speed, Distance, Delays, AND Triggering Event are all set. -->
+   <!-- Things that change the Rising vs Falling options -->
+    <value nybble="8-9" title="Moving Water - Distance" comment="This determines how many blocks the Water will move." comment2="Setting this will drastically change the function of Moving Water. Please keep this in mind." requirednybble="5.2-5.4,5.1" requiredval="1-7, 0"/> <!-- Appears when Speed is set, disappears if Falling is set. -->
+    <value nybble="8-9" title="I wouldn't do that if I were you..." comment="This determines how many blocks the Water will move. Normally. But you are a bad person and are trying to set combinations of options that are known not to work. So stop right there and either change this back to zero, or select the option to the left of where it says [Extremely Buggy]." requirednybble="5.2-5.4,5.1" requiredval="1-7, 1"/> <!-- Appears when you've been a very bad boy and Falling is enabled with Distance set. -->
+    <value nybble="6" title="Moving Water - Delay at Top" comment="This determines the delay when the Water has finished rising." requirednybble="5.2-5.4,8-9" requiredval="1-7, 1-255"/> <!-- Appears when Speed and Distance are set -->
+    <value nybble="7" title="Moving Water - Delay at Bottom" comment="This determines the delay when the Water has returned to its starting position." comment2="The initial delay only can be set by using event-controlled Water. Utilize Event Chainers to fake the delay settings if you need to set an initial delay." requirednybble="5.2-5.4,8-9" requiredval="1-7, 1-255"/> <!-- Appears when Speed and Distance are set -->
+    <value nybble="1.2-2.4" title="Moving Water - Triggering Event ID" comment="The Moving Water mode will be triggered when this Event is activated." requirednybble="5.2-5.4" idtype="Triggering Event"/> <!-- Appears when Speed is set --> <!-- Needs modified to allow for 256 events. -->
+    <value nybble="11.2-12.4" title="Location ID" comment="Match with a Location ID to set a specific area in which to display Water. Note that some sprites only work correctly in Non-Location Water." idtype="Location"/>
+    <checkbox nybble="10.1" title="Higher Transparency and Flat Top" comment="When enabled, the animated crest effect on the top portion of the Water is removed, and the Non-Location Water becomes almost transparent." requirednybble="11.2-12.4" requiredval="0"/> <!--Appears when a Location ID is not set. -->
+    <checkbox nybble="10.1" title="Flat Top" requirednybble="11.2-12.4"/> <!-- Appears when a Location ID is set. -->
+    <checkbox nybble="10.2" title="Place Behind Layer 0" comment="For this to work, 'Layer 0 Spotlight' must be turned off in the zone's settings." requirednybble="11.2-12.4"/> <!-- Appears when a Location ID is set. -->
+    <checkbox nybble="11.1" title="Unknown Flag 11.1" comment="This flag makes the Water function differently to some degree. It is known to move up and down 1 tile on a cycle when this setting is used with a few others."/>
+	<list nybble="4" title="Color">
+      <entry value="0">Default (Blue)</entry>
+      <entry value="1">Black</entry>
+      <entry value="2">Green</entry>
+    </list>
+  </sprite> <!-- #138: Water -->
+
+  <!-- Mode Cheat Sheet
+    Speed 5.2-5.4
+    |Distance 8-9
+    ||Delays 6-7
+    |||Triggering Event 1-4
+    ||||Mode 5.1 Off / On
+    |||||"Bopping" 11.1
+    YNNN=Rising Forever / Falling Forever
+    YNNY=Rising Forever while On / Falling Forever While On [UNKNOWN]
+    YY?N=Automatically Rising and Falling / [BUGGY!]
+    YYNY=Rises Distance while On, Falls when Off / [BUGGY!]
+    YYYY=Rising and Falling while On, Returns when Off / [BUGGY!]
+  -->
+
+  <!-- Nope! I'm done! You guys test this crap. *clones Water* I'm moving on... -->
+  <!-- Test the 7 Modes through their associated conditions and fully describe them in the same way that Water is described. [Extremely Buggy] is naturally assumed for Falling mixed with the last three types. -->
+  <sprite id="139" name="Lava" noyoshi="True" notes="Place this in the level to generate lava. There are many different ways to use Lava.&lt;br&gt;&lt;br&gt;Location Lava: If you assign a Location ID, you can cause lava to appear only within the chosen Location instead of across the entire stage.&lt;br&gt;&lt;br&gt;Moving Lava: You can also create lava that rises and/or falls. This gets a little complicated, so be sure to read the related settings.&lt;br&gt;&lt;br&gt;Lava Crest's Maximum Length: The crest of Lava will stop drawing past 8192 pixels (512 blocks). You can avoid this by making multiple instances of Location Lava. Make sure that the widths of the locations are no greater than 8192, and that they are multiples of 16.">
+    <dependency notes="When using Moving Lava, the Lava becomes loaded across the entire Area instead of just the active Zone. Please build your levels with this in mind. Additionally, do not use more than one Moving Lava in the same Area as only the top (highest Y-Axis) one will take effect. Unlike with Moving Water you cannot use Moving Lava in multiple Zones within the same area, unless you place them at the same Y-Axis. Also, be sure to reset your Sprite Settings if you switch between different setting groups of Moving Lava or Location Lava to prevent unusual bugs and behavior."/>
+   <!-- The different displays of the Speed option -->
+    <list nybble="5.2-5.4" title="Moving Lava - Rising Speed" comment="This determines the speed at which the Lava will rise, or rise and fall." requirednybble="5.1" requiredval="0">
+      <entry value="0">No Movement</entry>
+      <entry value="5">Very Slow</entry>
+      <entry value="6">Slow (Standard)</entry>
+      <entry value="7">Medium</entry>
+      <entry value="4">Fast</entry>
+      <entry value="1">Very Fast</entry>
+      <entry value="2">Very Fast</entry>
+      <entry value="3">Very Fast</entry>
+    </list> <!-- This version of the list shows when Rising Lava is set, regardless of Distance, Delay, or Triggering Event ID -->
+    <list nybble="5.2-5.4" title="Moving Lava - Falling Speed" comment="This determines the speed at which the Lava will fall." requirednybble="5.1,8-9" requiredval="1, 0">
+      <entry value="0">No Movement</entry>
+      <entry value="5">Very Slow</entry>
+      <entry value="6">Slow (Standard)</entry>
+      <entry value="7">Medium</entry>
+      <entry value="4">Fast</entry>
+      <entry value="1">Very Fast</entry>
+      <entry value="2">Very Fast</entry>
+      <entry value="3">Very Fast</entry>
+    </list> <!-- This version of the list shows when Falling Lava is set, and Distance is not set. You're okay... for now. -->
+    <list nybble="5.2-5.4" title="I really wouldn't do that if I were you..." comment="Right now, you've selected [Extremely Buggy]. You've made a terrible mistake somewhere and have combined the wrong settings." comment2="Please don't try to set Distance or Delays while using Falling Lava. You will not like the results. Please trust me." advancedcomment="Oh, so you turned on Advanced, did you? You think you're so smart... Well fine, I'll share the limited documentation we have on why you shouldn't use these settings: Falling Lava works in a peculiar way. When the appropriate event has not been activated, or there is no corresponding event, [Never ON] then the lava surface will appear [Distance] blocks higher. The lava will then sink this many blocks, respecting any delays. After waiting for the delay at the bottom, the lava surface will not rise again. Not exactly. Instead, it will 'skip' the rising part and 'jump' to immediately to the top. Additionally, using this with events will cause the lava to rise, instead of falling. [ON] But the starting point is the same higher distance. The difference is that the lava rises continuously as long as the event is enabled. [Endless Rising] If it is disabled, [OFF after ON] the lava surface will 'jump' back to where it started and remain there until the event is re-enabled. [Why bother?] Additionally, 1-5 on Movement Speed values have some additional odd glitchiness. Supposedly. So please, stop trying to combine settings like this. Or your level will suck." requirednybble="5.1,8-9" requiredval="1, 1-255">
+      <entry value="0">Reset Sprite Settings!</entry>
+      <entry value="5">Really Not Recommended</entry>
+      <entry value="6">Slow (Standard) (Not Recommended)</entry>
+      <entry value="7">Medium (Not Recommended)</entry>
+      <entry value="4">Really Not Recommended</entry>
+      <entry value="1">Really Not Recommended</entry>
+      <entry value="2">Really Not Recommended</entry>
+      <entry value="3">Really Not Recommended</entry>
+    </list> <!-- This version of the list shows when Falling Lava is set, and Distance is also is set. You bad bad boy... -->
+	<list nybble="4" title="Color">
+      <entry value="0">Default (Red)</entry>
+      <entry value="1">Blue</entry>
+      <entry value="2">Gold</entry>
+    </list>
+   <!-- Rising vs Falling Options -->
+    <dualbox nybble="5.1" title1="[???] Rising Forever" title2="[???] Falling Forever" comment="This determines which direction the Lava will move." requirednybble="5.2-5.4,8-9,6-7,1-2" requiredval="1-7, 0, 0, 0"/> <!-- Appears when Speed is set and Distance, Delays, and Triggering Event ID are NOT set -->
+    <dualbox nybble="5.1" title1="[???] Rising Forever while On" title2="[???] Falling Forever while On" comment="This determines which direction the Lava will move while the Triggering Event is activated." requirednybble="5.2-5.4,8-9,6-7,1-2" requiredval="1-7, 0, 0, 1-255"/> <!-- Appears when Speed and Triggering Event ID are set and Distance is NOT set -->
+    <dualbox nybble="5.1" title1="[???] Automatically Rising and Falling" title2="[Extremely Buggy]" comment="The Lava will automatically rise and fall in accordance with the set delays." requirednybble="5.2-5.4,8-9,1-2" requiredval="1-7, 1-255, 0"/> <!-- Appears when Speed and Distance are set, and Triggering Event ID is not set. -->
+    <dualbox nybble="5.1" title1="[???] Rises Distance while On, Falls when Off" title2="[Extremely Buggy]" comment="The Lava will rise the Distance value once activated, and stay at the top until the Triggering Event is deactivated. If the Triggering Event is deactivated before it rises the full distance, it will finish rising, then immediately start to fall." comment2="This option only applies if Delay values are both set to 0, Distance is set, and Triggering ID is set. Do not use [Extremely Buggy]. No really, don't. It won't help you any." requirednybble="5.2-5.4,8-9,6-7,1-2" requiredval="1-7, 1-255, 0, 1-255"/> <!-- Appears when Speed and Distance and Triggering Event ID are set, AND when Delays are NOT set. -->
+    <dualbox nybble="5.1" title1="[???] Rising and Falling while On, Glitch-Returns when Off" title2="[Extremely Buggy]" comment="The Lava will rise and fall in accordance with the set delays while the Triggering Event is activated." comment2="When the Triggering Event is deactivated, the Lava will immediately return to its starting position in a glitchy manner. It is highly recommended to not cause this to happen in your level design. Use Event Chainers with Delays or the Event Looper to get this type of timing instead." requirednybble="5.2-5.4,8-9,6-7,1-2" requiredval="1-7, 1-255, 1-255, 1-255"/> <!-- Appears when Speed, Distance, Delays, AND Triggering Event are all set. -->
+   <!-- Things that change the Rising vs Falling options -->
+    <value nybble="8-9" title="Moving Lava - Distance" comment="This determines how many blocks the Lava will move." comment2="Setting this will drastically change the function of Moving Lava. Please keep this in mind." requirednybble="5.2-5.4,5.1" requiredval="1-7, 0"/> <!-- Appears when Speed is set, disappears if Falling is set. -->
+    <value nybble="8-9" title="I wouldn't do that if I were you..." comment="This determines how many blocks the Lava will move. Normally. But you are a bad person and are trying to set combinations of options that are known not to work. So stop right there and either change this back to zero, or select the option to the left of where it says [Extremely Buggy]." requirednybble="5.2-5.4,5.1" requiredval="1-7, 1"/> <!-- Appears when you've been a very bad boy and Falling is enabled with Distance set. -->
+    <value nybble="6" title="Moving Lava - Delay at Top" comment="This determines the delay when the Lava has finished rising." requirednybble="5.2-5.4,8-9" requiredval="1-7, 1-255"/> <!-- Appears when Speed and Distance are set -->
+    <value nybble="7" title="Moving Lava - Delay at Bottom" comment="This determines the delay when the Lava has returned to its starting position." comment2="The initial delay only can be set by using event-controlled Lava. Utilize Event Chainers to fake the delay settings if you need to set an initial delay." requirednybble="5.2-5.4,8-9" requiredval="1-7, 1-255"/> <!-- Appears when Speed and Distance are set -->
+    <value nybble="1.2-2.4" title="Moving Lava - Triggering Event ID" comment="The Moving Lava mode will be triggered when this Event is activated." requirednybble="5.2-5.4" idtype="Triggering Event"/> <!-- Appears when Speed is set --> <!-- Needs modified to allow for 256 events. -->
+   <!-- Location Lava Options -->
+    <value nybble="11.2-12.4" title="Location Lava - Location ID" comment="Match with a Location ID to set a specific area in which to display Lava." comment2="Note that some sprites only work correctly in Non-Location Lava." advancedcomment="Location Lava only works properly with Location IDs 0-127. Location IDs 128-255 will cause the Lava to constantly move up and down slightly. It's unknown if a use can be found for this, so it remains documented here in the Advanced Comment." requirednybble="5.2-5.4" requiredval="0" idtype="Location"/> <!-- Appears only while Speed is not set -->
+    <checkbox nybble="10.1" title="Location Lava - Flat Top" comment="When enabled, the animated crest effect on the top portion of the Lava is removed. This creates a 'square' look." comment2="It's recommended to only use this when the Lava is touching a straight ceiling." requirednybble="5.2-5.4,11.2-12.4" requiredval="0, 1-255"/> <!-- Appears only if Location ID is set and hides if Speed is set -->
+  </sprite> <!-- #139: Lava -->
   
   <sprite id="153" name="(Unused) ?-Switch" sizehacks="True" notes="An exact duplicate of the normal ?-Switch.">
     <dependency notes="The game will crash unless a normal orange switch is placed somewhere in the level. It does not have to be within an area that is actually used.">
@@ -1194,6 +1342,63 @@
     <value nybble="8" title="Z-Order" comment="This determines the relative Z-Order placement of the Rolling Hill when compared to other Rolling Hills." comment2="If you have multiple Rolling Hills overlapping each other, you must use this setting to prevent graphical glitches. Rolling Hills with a higher Z-Order number will show behind those with a lower number."/>
     <value nybble="5-6" title="Hill ID" comment="This pairs matching Rolling Hill Coins to this hill." idtype="Hill"/>
   </sprite> <!-- #212: Rolling Hill -->
+  
+  <!-- Nope! I'm done! You guys test this crap. *clones Water* I'm moving on... -->
+  <!-- Test the 7 Modes through their associated conditions and fully describe them in the same way that Water is described. [Extremely Buggy] is naturally assumed for Falling mixed with the last three types. -->
+  <sprite id="216" name="Poisoned Water" noyoshi="True" notes="Place this in the level to generate poisonous water. There are many different ways to use Poisoned Water.&lt;br&gt;&lt;br&gt;Location Poisoned Water: If you assign a Location ID, you can cause poisonous water to appear only within the chosen Location instead of across the entire stage.&lt;br&gt;&lt;br&gt;Moving Poisoned Water: You can also create poisonous water that rises and/or falls. This gets a little complicated, so be sure to read the related settings.&lt;br&gt;&lt;br&gt;Poison Water Crest's Maximum Length: The crest of Poison Water will stop drawing past 8192 pixels (512 blocks). You can avoid this by making multiple instances of Location Poisoned Water. Make sure that the widths of the locations are no greater than 8192, and that they are multiples of 16.">
+    <dependency notes="When using Moving Poisoned Water, the Poisoned Water becomes loaded across the entire Area instead of just the active Zone. Please build your levels with this in mind. Additionally, do not use more than one Moving Poisoned Water in the same Area as only the top (highest Y-Axis) one will take effect. Unlike with Moving Water you cannot use Moving Poisoned Water in multiple Zones within the same area, unless you place them at the same Y-Axis. Also, be sure to reset your Sprite Settings if you switch between different setting groups of Moving Poisoned Water or Location Poisoned Water to prevent unusual bugs and behavior."/>
+   <!-- The different displays of the Speed option -->
+    <list nybble="5.2-5.4" title="Moving Poisoned Water - Rising Speed" comment="This determines the speed at which the Poisoned Water will rise, or rise and fall." requirednybble="5.1" requiredval="0">
+      <entry value="0">No Movement</entry>
+      <entry value="5">Very Slow</entry>
+      <entry value="6">Slow (Standard)</entry>
+      <entry value="7">Medium</entry>
+      <entry value="4">Fast</entry>
+      <entry value="1">Very Fast</entry>
+      <entry value="2">Very Fast</entry>
+      <entry value="3">Very Fast</entry>
+    </list> <!-- This version of the list shows when Rising Poisoned Water is set, regardless of Distance, Delay, or Triggering Event ID -->
+    <list nybble="5.2-5.4" title="Moving Poisoned Water - Falling Speed" comment="This determines the speed at which the Poisoned Water will fall." requirednybble="5.1,8-9" requiredval="1, 0">
+      <entry value="0">No Movement</entry>
+      <entry value="5">Very Slow</entry>
+      <entry value="6">Slow (Standard)</entry>
+      <entry value="7">Medium</entry>
+      <entry value="4">Fast</entry>
+      <entry value="1">Very Fast</entry>
+      <entry value="2">Very Fast</entry>
+      <entry value="3">Very Fast</entry>
+    </list> <!-- This version of the list shows when Falling Poisoned Water is set, and Distance is not set. You're okay... for now. -->
+    <list nybble="5.2-5.4" title="I really wouldn't do that if I were you..." comment="Right now, you've selected [Extremely Buggy]. You've made a terrible mistake somewhere and have combined the wrong settings." comment2="Please don't try to set Distance or Delays while using Falling Poisoned Water. You will not like the results. Please trust me." advancedcomment="Oh, so you turned on Advanced, did you? You think you're so smart... Well fine, I'll share the limited documentation we have on why you shouldn't use these settings: Falling Poisoned Water works in a peculiar way. When the appropriate event has not been activated, or there is no corresponding event, [Never ON] then the water surface will appear [Distance] blocks higher. The water will then sink this many blocks, respecting any delays. After waiting for the delay at the bottom, the water surface will not rise again. Not exactly. Instead, it will 'skip' the rising part and 'jump' to immediately to the top. Additionally, using this with events will cause the water to rise, instead of falling. [ON] But the starting point is the same higher distance. The difference is that the water rises continuously as long as the event is enabled. [Endless Rising] If it is disabled, [OFF after ON] the water surface will 'jump' back to where it started and remain there until the event is re-enabled. [Why bother?] Additionally, 1-5 on Movement Speed values have some additional odd glitchiness. Supposedly. So please, stop trying to combine settings like this. Or your level will suck." requirednybble="5.1,8-9" requiredval="1, 1-255">
+      <entry value="0">Reset Sprite Settings!</entry>
+      <entry value="5">Really Not Recommended</entry>
+      <entry value="6">Slow (Standard) (Not Recommended)</entry>
+      <entry value="7">Medium (Not Recommended)</entry>
+      <entry value="4">Really Not Recommended</entry>
+      <entry value="1">Really Not Recommended</entry>
+      <entry value="2">Really Not Recommended</entry>
+      <entry value="3">Really Not Recommended</entry>
+    </list> <!-- This version of the list shows when Falling Poisoned Water is set, and Distance is also is set. You bad bad boy... -->
+   <!-- Rising vs Falling Options -->
+    <dualbox nybble="5.1" title1="[???] Rising Forever" title2="[???] Falling Forever" comment="This determines which direction the Poisoned Water will move." requirednybble="5.2-5.4,8-9,6-7,1-2" requiredval="1-7, 0, 0, 0"/> <!-- Appears when Speed is set and Distance, Delays, and Triggering Event ID are NOT set -->
+    <dualbox nybble="5.1" title1="[???] Rising Forever while On" title2="[???] Falling Forever while On" comment="This determines which direction the Poisoned Water will move while the Triggering Event is activated." requirednybble="5.2-5.4,8-9,6-7,1-2" requiredval="1-7, 0, 0, 1-255"/> <!-- Appears when Speed and Triggering Event ID are set and Distance is NOT set -->
+    <dualbox nybble="5.1" title1="[???] Automatically Rising and Falling" title2="[Extremely Buggy]" comment="The Poisoned Water will automatically rise and fall in accordance with the set delays." requirednybble="5.2-5.4,8-9,1-2" requiredval="1-7, 1-255, 0"/> <!-- Appears when Speed and Distance are set, and Triggering Event ID is not set. -->
+    <dualbox nybble="5.1" title1="[???] Rises Distance while On, Falls when Off" title2="[Extremely Buggy]" comment="The Poisoned Water will rise the Distance value once activated, and stay at the top until the Triggering Event is deactivated. If the Triggering Event is deactivated before it rises the full distance, it will finish rising, then immediately start to fall." comment2="This option only applies if Delay values are both set to 0, Distance is set, and Triggering ID is set. Do not use [Extremely Buggy]. No really, don't. It won't help you any." requirednybble="5.2-5.4,8-9,6-7,1-2" requiredval="1-7, 1-255, 0, 1-255"/> <!-- Appears when Speed and Distance and Triggering Event ID are set, AND when Delays are NOT set. -->
+    <dualbox nybble="5.1" title1="[???] Rising and Falling while On, Glitch-Returns when Off" title2="[Extremely Buggy]" comment="The Poisoned Water will rise and fall in accordance with the set delays while the Triggering Event is activated." comment2="When the Triggering Event is deactivated, the Poisoned Water will immediately return to its starting position in a glitchy manner. It is highly recommended to not cause this to happen in your level design. Use Event Chainers with Delays or the Event Looper to get this type of timing instead." requirednybble="5.2-5.4,8-9,6-7,1-2" requiredval="1-7, 1-255, 1-255, 1-255"/> <!-- Appears when Speed, Distance, Delays, AND Triggering Event are all set. -->
+   <!-- Things that change the Rising vs Falling options -->
+    <value nybble="8-9" title="Moving Poisoned Water - Distance" comment="This determines how many blocks the Poisoned Water will move." comment2="Setting this will drastically change the function of Moving Poisoned Water. Please keep this in mind." requirednybble="5.2-5.4,5.1" requiredval="1-7, 0"/> <!-- Appears when Speed is set, disappears if Falling is set. -->
+    <value nybble="8-9" title="I wouldn't do that if I were you..." comment="This determines how many blocks the Poisoned Water will move. Normally. But you are a bad person and are trying to set combinations of options that are known not to work. So stop right there and either change this back to zero, or select the option to the left of where it says [Extremely Buggy]." requirednybble="5.2-5.4,5.1" requiredval="1-7, 1"/> <!-- Appears when you've been a very bad boy and Falling is enabled with Distance set. -->
+    <value nybble="6" title="Moving Poisoned Water - Delay at Top" comment="This determines the delay when the Poisoned Water has finished rising." requirednybble="5.2-5.4,8-9" requiredval="1-7, 1-255"/> <!-- Appears when Speed and Distance are set -->
+    <value nybble="7" title="Moving Poisoned Water - Delay at Bottom" comment="This determines the delay when the Poisoned Water has returned to its starting position." comment2="The initial delay only can be set by using event-controlled Poisoned Water. Utilize Event Chainers to fake the delay settings if you need to set an initial delay." requirednybble="5.2-5.4,8-9" requiredval="1-7, 1-255"/> <!-- Appears when Speed and Distance are set -->
+    <value nybble="1.2-2.4" title="Moving Poisoned Water - Triggering Event ID" comment="The Moving Poisoned Water mode will be triggered when this Event is activated." requirednybble="5.2-5.4" idtype="Triggering Event" /> <!-- Appears when Speed is set --> <!-- Needs modified to allow for 256 events. -->
+   <!-- Location Poisoned Water Options -->
+    <value nybble="11.2-12.4" title="Location Poisoned Water - Location ID" comment="Match with a Location ID to set a specific area in which to display Poisoned Water." comment2="Note that some sprites only work correctly in Non-Location Poisoned Water." advancedcomment="Location Poisoned Water only works properly with Location IDs 0-127. Location IDs 128-255 will cause the Poisoned Water to constantly move up and down slightly. It's unknown if a use can be found for this, so it remains documented here in the Advanced Comment." requirednybble="5.2-5.4" requiredval="0" idtype="Location"/> <!-- Appears only while Speed is not set -->
+    <checkbox nybble="10.1" title="Location Poisoned Water - Flat Top" comment="When enabled, the animated crest effect on the top portion of the Poisoned Water is removed. This creates a 'square' look." comment2="It's recommended to only use this when the Poisoned Water is touching a straight ceiling." requirednybble="5.2-5.4,11.2-12.4" requiredval="0, 1-255"/> <!-- Appears only if Location ID is set and hides if Speed is set -->
+	<list nybble="4" title="Color">
+      <entry value="0">Default (Purple)</entry>
+      <entry value="1">Black</entry>
+      <entry value="2">Pink</entry>
+    </list>
+  </sprite> <!-- #216: Poisoned Water -->
   
   <sprite id="219" name="Stretching Line Block" notes="A platform made up of orange or other-colored blocks that shrinks and expands while moving up and down.">
     <dependency notes="This platform can be paired with [312] Stretching Line Block Controller in order to synchronize movement across multiple platforms.">

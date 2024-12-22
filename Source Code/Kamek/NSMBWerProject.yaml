@@ -12,7 +12,6 @@ modules:
   - processed/endingMgr.yaml
   - processed/chestnut.yaml
   - processed/flipblock.yaml
-  # - processed/fileselect.yaml
   - processed/magicplatform.yaml
   # - processed/cutScene.yaml
   - processed/bonepiece.yaml

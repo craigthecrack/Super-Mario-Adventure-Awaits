@@ -1,13 +1,22 @@
 ---
 source_files: [../src/fileselecticons.cpp]
 hooks:
+  - name: FS_RemoveMultiSelect
+    type: patch
+    addr_pal: 0x80783D04
+    data: '4800001C'
+
+  - {name: FS_DisableMultiIn, type: nop_insn, area_pal: [0x807837FC, 0x8078380C]}
+  - {name: FS_DisableMultiIn2, type: nop_insn, area_pal: [0x8078394C, 0x8078395C]}
+  - {name: FS_DisableMultiOut, type: nop_insn, area_pal: [0x80784220, 0x80784230]}
+
   - name: DateFile_NewLoadInfo
     type: branch_insn
     branch_type: b
     src_addr_pal: 0x8077D9A0
     target_func: 'dDateFile_c::newLoadInfoForSaveBlock(SaveBlock *)'
-  
+
   - name: CSMStorePlayerIntoSave
     type: add_func_pointer
-    src_addr_pal: 0x809415f8
+    src_addr_pal: 0x809415F8
     target_func: 'CSMStorePlayer(dBase_c *)'

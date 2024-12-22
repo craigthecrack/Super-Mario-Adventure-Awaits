@@ -89,6 +89,7 @@ modules:
   # - processed/worldmapstuff.yaml
   - processed/fileselecticons.yaml
   - processed/randomcrap.yaml
+  - processed/lavawaves.yaml
   # - processed/snakeBlock.yaml # commented, until fix
   - processed/newSfx.yaml
   - processed/spikeTrap.yaml
@@ -99,3 +100,4 @@ modules:
   - processed/meragon.yaml
   - processed/coinStack.yaml
   - processed/tenten.yaml
+  - processed/liquidsTex.yaml
